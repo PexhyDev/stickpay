@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 
-export type MisticPayState = "PENDENTE" | "COMPLETO" | "EXPIRADO" | "CANCELADO" | "QUEUED";
+export type ProviderTransactionState = "PENDENTE" | "COMPLETO" | "EXPIRADO" | "CANCELADO" | "QUEUED";
 
 export type CreatePixChargeInput = {
   amount: number;
@@ -10,7 +10,7 @@ export type CreatePixChargeInput = {
   description?: string;
 };
 
-type MisticPayCreateTransactionResponse = {
+type ProviderCreateTransactionResponse = {
   message: string;
   data: {
     transactionId: string | number;
@@ -22,7 +22,7 @@ type MisticPayCreateTransactionResponse = {
     transactionType: string;
     transactionMethod: string;
     transactionAmount: number;
-    transactionState: MisticPayState;
+    transactionState: ProviderTransactionState;
     qrCodeBase64?: string | null;
     qrcodeUrl?: string | null;
     copyPaste?: string;
@@ -31,10 +31,10 @@ type MisticPayCreateTransactionResponse = {
 
 export type StickPayPixCharge = {
   id: string;
-  provider: "misticpay";
-  providerTransactionId: string;
+  processor: "internal";
+  processorTransactionId: string;
   status: "pending" | "paid" | "expired" | "canceled" | "queued";
-  providerState: MisticPayState;
+  processorState: ProviderTransactionState;
   amount: number;
   fee: number;
   currency: "BRL";
@@ -51,14 +51,14 @@ export type StickPayPixCharge = {
   expiresAt: string;
 };
 
-export type MisticPayWebhookPayload = {
+export type PaymentWebhookPayload = {
   event?: string;
   transactionId?: string | number;
   transactionType?: "DEPOSITO" | "RETIRADA";
   transactionMethod?: "PIX";
   clientName?: string;
   clientDocument?: string;
-  status?: MisticPayState;
+  status?: ProviderTransactionState;
   value?: number;
   fee?: number;
   infraction?: {
@@ -77,18 +77,21 @@ export type MisticPayWebhookPayload = {
   };
 };
 
-const MISTIC_PAY_BASE_URL = process.env.MISTICPAY_BASE_URL ?? "https://api.misticpay.com/api";
+const PAYMENT_PROVIDER_BASE_URL = process.env.PAYMENT_PROVIDER_BASE_URL;
 
 function cleanDocument(document: string) {
   return document.replace(/\D/g, "");
 }
 
-function shouldUseLiveProvider() {
-  return process.env.MISTICPAY_MODE === "live" && Boolean(process.env.MISTICPAY_CLIENT_ID && process.env.MISTICPAY_CLIENT_SECRET);
+function shouldUseLiveProcessor() {
+  return (
+    process.env.PAYMENT_PROVIDER_MODE === "live" &&
+    Boolean(process.env.PAYMENT_PROVIDER_CLIENT_ID && process.env.PAYMENT_PROVIDER_CLIENT_SECRET && PAYMENT_PROVIDER_BASE_URL)
+  );
 }
 
-function mapState(state: MisticPayState): StickPayPixCharge["status"] {
-  const states: Record<MisticPayState, StickPayPixCharge["status"]> = {
+function mapState(state: ProviderTransactionState): StickPayPixCharge["status"] {
+  const states: Record<ProviderTransactionState, StickPayPixCharge["status"]> = {
     PENDENTE: "pending",
     COMPLETO: "paid",
     EXPIRADO: "expired",
@@ -99,16 +102,16 @@ function mapState(state: MisticPayState): StickPayPixCharge["status"] {
   return states[state];
 }
 
-function normalizeCreateTransactionResponse(response: MisticPayCreateTransactionResponse): StickPayPixCharge {
-  const providerTransactionId = String(response.data.transactionId);
+function normalizeCreateTransactionResponse(response: ProviderCreateTransactionResponse): StickPayPixCharge {
+  const processorTransactionId = String(response.data.transactionId);
   const createdAt = new Date().toISOString();
 
   return {
-    id: `sp_pix_${providerTransactionId}`,
-    provider: "misticpay",
-    providerTransactionId,
+    id: `sp_pix_${processorTransactionId}`,
+    processor: "internal",
+    processorTransactionId,
     status: mapState(response.data.transactionState),
-    providerState: response.data.transactionState,
+    processorState: response.data.transactionState,
     amount: response.data.transactionAmount,
     fee: response.data.transactionFee ?? 0,
     currency: "BRL",
@@ -123,9 +126,9 @@ function normalizeCreateTransactionResponse(response: MisticPayCreateTransaction
   };
 }
 
-function mockCreateTransaction(input: CreatePixChargeInput): MisticPayCreateTransactionResponse {
-  const providerTransactionId = crypto.randomInt(10_000_000, 99_999_999).toString();
-  const transactionId = input.transactionId ?? `checkout-${providerTransactionId}`;
+function mockCreateTransaction(input: CreatePixChargeInput): ProviderCreateTransactionResponse {
+  const processorTransactionId = crypto.randomInt(10_000_000, 99_999_999).toString();
+  const transactionId = input.transactionId ?? `checkout-${processorTransactionId}`;
   const copyPaste = [
     "000201010212",
     "26580014br.gov.bcb.pix",
@@ -138,7 +141,7 @@ function mockCreateTransaction(input: CreatePixChargeInput): MisticPayCreateTran
   return {
     message: "Transação criada com sucesso",
     data: {
-      transactionId: providerTransactionId,
+      transactionId: processorTransactionId,
       payer: {
         name: input.payerName,
         document: cleanDocument(input.payerDocument),
@@ -149,13 +152,13 @@ function mockCreateTransaction(input: CreatePixChargeInput): MisticPayCreateTran
       transactionAmount: input.amount,
       transactionState: "PENDENTE",
       qrCodeBase64: null,
-      qrcodeUrl: `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(copyPaste)}`,
+      qrcodeUrl: null,
       copyPaste,
     },
   };
 }
 
-export async function createPixChargeWithMisticPay(input: CreatePixChargeInput) {
+export async function createPixCharge(input: CreatePixChargeInput) {
   const payload = {
     amount: input.amount,
     payerName: input.payerName,
@@ -164,34 +167,34 @@ export async function createPixChargeWithMisticPay(input: CreatePixChargeInput) 
     description: input.description,
   };
 
-  if (!shouldUseLiveProvider()) {
+  if (!shouldUseLiveProcessor()) {
     return normalizeCreateTransactionResponse(mockCreateTransaction(input));
   }
 
-  const response = await fetch(`${MISTIC_PAY_BASE_URL}/transactions/create`, {
+  const response = await fetch(`${PAYMENT_PROVIDER_BASE_URL}/transactions/create`, {
     method: "POST",
     headers: {
-      ci: String(process.env.MISTICPAY_CLIENT_ID),
-      cs: String(process.env.MISTICPAY_CLIENT_SECRET),
+      ci: String(process.env.PAYMENT_PROVIDER_CLIENT_ID),
+      cs: String(process.env.PAYMENT_PROVIDER_CLIENT_SECRET),
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
-    throw new Error(`MisticPay create transaction failed with status ${response.status}`);
+    throw new Error(`Payment processor create transaction failed with status ${response.status}`);
   }
 
-  return normalizeCreateTransactionResponse((await response.json()) as MisticPayCreateTransactionResponse);
+  return normalizeCreateTransactionResponse((await response.json()) as ProviderCreateTransactionResponse);
 }
 
-export function normalizeMisticPayWebhook(payload: MisticPayWebhookPayload) {
+export function normalizePaymentWebhook(payload: PaymentWebhookPayload) {
   if (payload.event === "INFRACTION" && payload.infraction) {
     return {
       event: "pix.med.updated",
-      provider: "misticpay",
+      processor: "internal",
       infractionId: payload.infraction.id,
-      providerTransactionId: payload.transaction?.transactionId ?? null,
+      processorTransactionId: payload.transaction?.transactionId ?? null,
       status: payload.infraction.status,
       amount: payload.infraction.amount,
       raw: payload,
@@ -200,10 +203,10 @@ export function normalizeMisticPayWebhook(payload: MisticPayWebhookPayload) {
 
   return {
     event: payload.transactionType === "RETIRADA" ? "pix.withdrawal.updated" : "pix.charge.updated",
-    provider: "misticpay",
-    providerTransactionId: payload.transactionId ? String(payload.transactionId) : null,
+    processor: "internal",
+    processorTransactionId: payload.transactionId ? String(payload.transactionId) : null,
     status: payload.status ? mapState(payload.status) : "pending",
-    providerState: payload.status ?? "PENDENTE",
+    processorState: payload.status ?? "PENDENTE",
     amount: payload.value ?? 0,
     fee: payload.fee ?? 0,
     payer: {

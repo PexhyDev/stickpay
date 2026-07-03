@@ -9,8 +9,8 @@ const benefits = [
   },
   {
     icon: ShieldCheck,
-    title: "MisticPay protegida",
-    description: "Credenciais ci/cs ficam sempre no backend.",
+    title: "Processamento protegido",
+    description: "Credenciais operacionais ficam sempre no backend.",
   },
   {
     icon: BellRing,
@@ -29,7 +29,7 @@ export default function MinimalPage() {
             Aceite Pix com segurança e velocidade
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-            Uma versão objetiva para validar a StickPay como camada Pix sobre a MisticPay.
+            Uma versão objetiva para validar a StickPay como plataforma de pagamentos Pix.
           </p>
           <a
             href="/#cadastro"

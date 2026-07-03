@@ -8,11 +8,11 @@ test("signup creates a mock Pix charge", async ({ page }) => {
   await page.getByLabel("Valor Pix").fill("49.90");
   await page.getByRole("button", { name: "Gerar Pix de teste" }).click();
 
-  await expect(page.getByText("Cobrança Pix mock gerada via MisticPay.")).toBeVisible();
+  await expect(page.getByText("Cobrança Pix de teste gerada pela StickPay.")).toBeVisible();
   await expect(page.getByLabel("Pix copia e cola")).toHaveValue(/000201010212/);
 });
 
-test("mock Pix APIs return charge and accept MisticPay webhook", async ({ request }) => {
+test("mock Pix APIs return charge and accept payment webhook", async ({ request }) => {
   const chargeResponse = await request.post("/api/pix/charges", {
     data: {
       amount: 49.9,
@@ -25,12 +25,12 @@ test("mock Pix APIs return charge and accept MisticPay webhook", async ({ reques
   expect(chargeResponse.status()).toBe(201);
   const charge = await chargeResponse.json();
 
-  expect(charge.provider).toBe("misticpay");
+  expect(charge.processor).toBe("internal");
   expect(charge.pix.copyPaste).toContain("000201010212");
 
   const webhookResponse = await request.post("/api/pix/webhook", {
     data: {
-      transactionId: charge.providerTransactionId,
+      transactionId: charge.processorTransactionId,
       transactionType: "DEPOSITO",
       transactionMethod: "PIX",
       clientName: "Cliente Teste",

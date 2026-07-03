@@ -1,4 +1,4 @@
-import { ArrowRight, PlayCircle, QrCode } from "lucide-react";
+import { ArrowRight, PlayCircle, ShieldCheck } from "lucide-react";
 
 function DashboardMock() {
   return (
@@ -15,8 +15,8 @@ function DashboardMock() {
       <rect x="64" y="70" width="150" height="20" rx="10" fill="#0B1120" />
       <rect x="552" y="64" width="92" height="32" rx="10" fill="#4F46E5" />
       <rect x="64" y="126" width="172" height="96" rx="16" fill="#E2E8F0" />
-      <rect x="274" y="126" width="172" height="96" rx="16" fill="#D1FAE5" />
-      <rect x="484" y="126" width="140" height="96" rx="16" fill="#DBEAFE" />
+      <rect x="274" y="126" width="172" height="96" rx="16" fill="#E0F2FE" />
+      <rect x="484" y="126" width="140" height="96" rx="16" fill="#EEF2FF" />
       <rect x="86" y="158" width="78" height="16" rx="8" fill="#64748B" />
       <rect x="86" y="184" width="110" height="20" rx="10" fill="#0B1120" />
       <rect x="296" y="158" width="86" height="16" rx="8" fill="#0F766E" />
@@ -41,30 +41,30 @@ export function Hero() {
       <div className="mx-auto grid max-w-7xl grid-cols-12 items-center gap-8 px-6">
         <div className="col-span-12 animate-pop-in lg:col-span-8">
           <p className="inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-sm font-bold uppercase tracking-[0.14em] text-accent shadow-sm">
-            <QrCode aria-hidden="true" size={16} />
-            Subadquirente Pix via MisticPay
+            <ShieldCheck aria-hidden="true" size={16} />
+            Plataforma de pagamentos Pix
           </p>
           <h1 id="hero-title" className="mt-4 text-4xl font-black leading-tight text-primary md:text-6xl">
-            Aceite Pix com segurança e velocidade
+            Pagamentos Pix com estrutura de operação.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-slate-700">
-            A StickPay nasce como uma camada de checkout, conciliação e webhooks sobre a MisticPay, para sua
-            operação receber Pix com contrato simples e controle de ponta a ponta.
+            Gere cobranças, acompanhe status e mantenha sua operação financeira sincronizada em uma plataforma
+            feita para negócios digitais que precisam de controle.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href="#cadastro"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-cta px-6 py-3 text-base font-extrabold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:brightness-110 active:translate-y-0"
             >
-              Teste grátis
+              Solicitar acesso
               <ArrowRight aria-hidden="true" size={18} />
             </a>
             <a
-              href="#arquitetura"
+              href="#como-funciona"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-extrabold text-primary transition duration-300 hover:-translate-y-0.5 hover:border-primary hover:shadow-lg active:translate-y-0"
             >
               <PlayCircle aria-hidden="true" size={18} />
-              Ver demo
+              Ver funcionamento
             </a>
           </div>
         </div>

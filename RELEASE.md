@@ -2,11 +2,12 @@
 
 ## Escopo
 
-- Landing page reposicionada como subadquirente Pix sobre a MisticPay.
-- Hero e componentes com microinterações de hover/motion.
-- Adapter MisticPay em `src/lib/misticpay.ts`.
+- Landing page premium para a StickPay como plataforma de pagamentos Pix.
+- Identidade visual oficial com logo, Poppins e paleta da marca.
+- Seções de produto, fluxo transacional, API, segurança, público-alvo, planos e CTA final.
 - Endpoint `POST /api/pix/charges` para cobrança Pix.
-- Endpoint `POST /api/pix/webhook` para webhooks MisticPay.
+- Endpoint `POST /api/pix/webhook` para eventos de pagamento.
+- Adapter interno genérico em `src/lib/paymentProvider.ts`.
 - Versão minimal em `/minimal` e `minimal/index.html`.
 - Testes unitários, E2E, CI e documentação.
 
@@ -14,10 +15,10 @@
 
 - Confirmar domínio final em `NEXT_PUBLIC_APP_URL`.
 - Configurar `STICKPAY_API_KEY`.
-- Configurar `MISTICPAY_MODE=live`.
-- Configurar `MISTICPAY_BASE_URL=https://api.misticpay.com/api`.
-- Configurar `MISTICPAY_CLIENT_ID` e `MISTICPAY_CLIENT_SECRET`.
-- Definir estratégia de assinatura/validação de webhooks com a MisticPay.
+- Configurar `PAYMENT_PROVIDER_MODE=live`.
+- Configurar `PAYMENT_PROVIDER_BASE_URL`.
+- Configurar `PAYMENT_PROVIDER_CLIENT_ID` e `PAYMENT_PROVIDER_CLIENT_SECRET`.
+- Definir estratégia de assinatura/validação de webhooks.
 - Trocar `stickpay.example.com` pelo domínio real.
 - Trocar `vendas@stickpay.example.com` pelo email oficial.
 - Executar `npm run lint`.

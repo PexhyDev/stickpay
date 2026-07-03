@@ -1,4 +1,4 @@
-import { createPixChargeWithMisticPay } from "@/src/lib/misticpay";
+import { createPixCharge } from "@/src/lib/paymentProvider";
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "node:crypto";
 
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "pix_charge_data_required" }, { status: 400, headers: securityHeaders });
   }
 
-  const charge = await createPixChargeWithMisticPay({
+  const charge = await createPixCharge({
     amount: body.amount,
     payerName: body.payerName,
     payerDocument: body.payerDocument,

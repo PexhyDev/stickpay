@@ -2,14 +2,14 @@ import { Check } from "lucide-react";
 
 const plans = [
   {
-    name: "Pix Start",
+    name: "Start",
     price: "R$ 0",
     description: "Para validar cobranças Pix e webhooks.",
-    features: ["Sandbox MisticPay", "QR Code Pix", "Webhook de depósito"],
-    cta: "Teste grátis",
+    features: ["Ambiente de teste", "QR Code Pix", "Webhook de depósito"],
+    cta: "Solicitar acesso",
   },
   {
-    name: "Pix Scale",
+    name: "Scale",
     price: "R$ 499",
     description: "Para operação com volume, suporte e conciliação.",
     features: ["Conciliação em tempo real", "Repasse operacional", "SLA de integração"],
@@ -17,7 +17,7 @@ const plans = [
     highlighted: true,
   },
   {
-    name: "Subadquirente",
+    name: "Operação",
     price: "Contato",
     description: "Para regras comerciais, risco e governança sob medida.",
     features: ["Contrato dedicado", "Gestão MED", "Arquitetura consultiva"],
@@ -33,7 +33,7 @@ export function PricingTable() {
           <div className="col-span-12 md:col-span-6">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Planos</p>
             <h2 id="pricing-title" className="mt-3 text-3xl font-bold text-primary md:text-4xl">
-              Comece com Pix e evolua para operação de subadquirência
+              Planos para validar, operar e escalar recebimentos Pix
             </h2>
           </div>
         </div>
@@ -60,7 +60,7 @@ export function PricingTable() {
                 ))}
               </ul>
               <a
-                href={plan.name === "Subadquirente" ? "mailto:vendas@stickpay.example.com" : "#cadastro"}
+                href={plan.name === "Operação" ? "mailto:vendas@stickpay.example.com" : "#cadastro"}
                 className={`mt-8 inline-flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-extrabold transition duration-300 hover:-translate-y-0.5 active:translate-y-0 ${
                   plan.highlighted ? "bg-cta text-white hover:shadow-lg hover:brightness-110" : "bg-primary text-white hover:bg-slate-800"
                 }`}

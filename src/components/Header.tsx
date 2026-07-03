@@ -1,10 +1,11 @@
 import { ArrowRight } from "lucide-react";
 
 const navItems = [
-  { href: "#beneficios", label: "Beneficios" },
-  { href: "#arquitetura", label: "Arquitetura" },
-  { href: "#precos", label: "Precos" },
-  { href: "#cadastro", label: "Cadastro" },
+  { href: "#plataforma", label: "Plataforma" },
+  { href: "#como-funciona", label: "Como funciona" },
+  { href: "#api", label: "API" },
+  { href: "#seguranca", label: "Segurança" },
+  { href: "#contato", label: "Contato" },
 ];
 
 export function Header() {
@@ -34,7 +35,7 @@ export function Header() {
             href="#cadastro"
             className="inline-flex items-center gap-2 rounded-lg bg-cta px-4 py-2.5 text-sm font-bold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110 active:translate-y-0"
           >
-            Comece agora
+            Solicitar acesso
             <ArrowRight aria-hidden="true" size={16} />
           </a>
         </div>

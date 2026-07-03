@@ -25,7 +25,7 @@ describe("SignupForm", () => {
     fireEvent.change(screen.getByLabelText(/valor pix/i), { target: { value: "49.90" } });
     fireEvent.click(screen.getByRole("button", { name: /gerar pix de teste/i }));
 
-    await waitFor(() => expect(screen.getByText(/cobrança pix mock gerada/i)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/cobrança pix de teste gerada/i)).toBeInTheDocument());
     expect(screen.getByDisplayValue(/STICKPAYPIXMOCK/i)).toBeInTheDocument();
     expect(fetch).toHaveBeenCalledWith("/api/pix/charges", expect.any(Object));
   });

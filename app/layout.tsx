@@ -9,14 +9,14 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://stickpay.example.com"),
-  title: "StickPay | Subadquirente Pix via MisticPay",
+  title: "StickPay | Plataforma de pagamentos Pix",
   description:
-    "Aceite Pix com segurança e velocidade usando a StickPay como camada de checkout, webhooks e conciliação sobre a MisticPay.",
-  keywords: ["gateway Pix", "subadquirente Pix", "MisticPay", "checkout Pix", "webhook Pix"],
+    "Gere cobranças Pix, acompanhe status transacionais, receba webhooks e organize sua operação financeira com a StickPay.",
+  keywords: ["gateway Pix", "pagamentos Pix", "checkout Pix", "webhook Pix", "conciliação Pix"],
   openGraph: {
-    title: "StickPay | Aceite Pix com segurança e velocidade",
+    title: "StickPay | Pagamentos Pix com estrutura de operação",
     description:
-      "Camada Pix para criar cobranças, normalizar webhooks e operar sobre a MisticPay.",
+      "Plataforma para criar cobranças Pix, acompanhar status e manter sistemas sincronizados por webhook.",
     url: "https://stickpay.example.com",
     siteName: "StickPay",
     images: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: "/assets/og-stickpay.svg",
         width: 1200,
         height: 630,
-        alt: "StickPay subadquirente Pix",
+        alt: "StickPay plataforma de pagamentos Pix",
       },
     ],
     locale: "pt_BR",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "StickPay",
-    description: "Subadquirente Pix com integração MisticPay, webhooks e conciliação.",
+    description: "Plataforma de pagamentos Pix com webhooks, status e conciliação operacional.",
     images: ["/assets/og-stickpay.svg"],
   },
   icons: {
@@ -46,7 +46,7 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "Product",
   name: "StickPay",
-  description: "Subadquirente Pix com checkout, webhooks e integração MisticPay.",
+  description: "Plataforma de pagamentos Pix com checkout, webhooks e acompanhamento transacional.",
   brand: {
     "@type": "Organization",
     name: "StickPay",

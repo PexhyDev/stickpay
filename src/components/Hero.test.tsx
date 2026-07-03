@@ -6,8 +6,8 @@ describe("Hero", () => {
   it("renders headline and primary CTAs", () => {
     render(<Hero />);
 
-    expect(screen.getByRole("heading", { name: /aceite pix/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /teste grátis/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /ver demo/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /pagamentos pix/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /solicitar acesso/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /ver funcionamento/i })).toBeInTheDocument();
   });
 });

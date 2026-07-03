@@ -2,9 +2,10 @@
 
 ## Resumo
 
-- Reposiciona a StickPay como subadquirente Pix usando a MisticPay por trás.
-- Adiciona microinterações de hover/motion na landing.
-- Adiciona endpoints mock para cobrança Pix e webhooks MisticPay.
+- Refatora a landing para posicionar a StickPay como plataforma própria de pagamentos Pix.
+- Adiciona seções de produto, fluxo transacional, API, segurança, público-alvo e CTA final.
+- Remove menções públicas a processadores externos e mantém a integração abstraída no backend.
+- Adiciona microinterações de hover/motion usando a identidade visual oficial.
 - Inclui testes unitários, E2E com Playwright, CI e documentação de lançamento.
 
 ## Validação
@@ -18,4 +19,4 @@
 ## Observações
 
 - Substituir `stickpay.example.com` e `vendas@stickpay.example.com` pelos dados oficiais antes de produção.
-- Configurar `STICKPAY_API_KEY`, `MISTICPAY_*` e `NEXT_PUBLIC_APP_URL` no Vercel.
+- Configurar `STICKPAY_API_KEY`, `PAYMENT_PROVIDER_*` e `NEXT_PUBLIC_APP_URL` no Vercel.

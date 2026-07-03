@@ -1,28 +1,33 @@
+import { ApiIntegration } from "@/src/components/ApiIntegration";
+import { AudienceGrid } from "@/src/components/AudienceGrid";
 import { BenefitCard } from "@/src/components/BenefitCard";
+import { FinalCta } from "@/src/components/FinalCta";
 import { Footer } from "@/src/components/Footer";
 import { Header } from "@/src/components/Header";
 import { Hero } from "@/src/components/Hero";
-import { MisticPayFlow } from "@/src/components/MisticPayFlow";
 import { PricingTable } from "@/src/components/PricingTable";
+import { ProductShowcase } from "@/src/components/ProductShowcase";
+import { SecurityControl } from "@/src/components/SecurityControl";
 import { SignupForm } from "@/src/components/SignupForm";
 import { Testimonial } from "@/src/components/Testimonial";
+import { TransactionFlow } from "@/src/components/TransactionFlow";
 import { BellRing, QrCode, ShieldCheck } from "lucide-react";
 
 const benefits = [
   {
     icon: QrCode,
-    title: "Pix imediato",
-    description: "Crie cobranças com QR Code, copia e cola e ID próprio para conciliação.",
+    title: "Cobranças Pix estruturadas",
+    description: "Crie QR Code, copia e cola e identificadores próprios para acompanhar cada recebimento.",
   },
   {
     icon: ShieldCheck,
-    title: "Credenciais protegidas",
-    description: "Client ID e Client Secret da MisticPay ficam no backend, nunca no checkout.",
+    title: "Operação protegida",
+    description: "Credenciais e processamento ficam no backend, com respostas padronizadas para seus sistemas.",
   },
   {
     icon: BellRing,
-    title: "Webhooks em tempo real",
-    description: "Receba confirmação de depósito Pix, saques e eventos MED com normalização StickPay.",
+    title: "Eventos em tempo real",
+    description: "Receba confirmações, mudanças de status e registros operacionais por webhook.",
   },
 ];
 
@@ -35,9 +40,9 @@ export default function Home() {
       <section id="beneficios" className="bg-white py-20" aria-labelledby="benefits-title">
         <div className="mx-auto grid max-w-7xl grid-cols-12 gap-6 px-6">
           <div className="col-span-12 md:col-span-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Beneficios</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Base operacional</p>
             <h2 id="benefits-title" className="mt-3 text-3xl font-bold text-primary md:text-4xl">
-              Pix com menos atrito técnico e mais controle operacional
+              Pagamentos Pix com controle para equipes que operam volume.
             </h2>
           </div>
           <div className="col-span-12 grid gap-5 md:col-span-7 md:grid-cols-3">
@@ -48,15 +53,18 @@ export default function Home() {
         </div>
       </section>
 
-      <MisticPayFlow />
-
+      <ProductShowcase />
+      <TransactionFlow />
+      <ApiIntegration />
+      <SecurityControl />
+      <AudienceGrid />
       <PricingTable />
 
-      <section className="bg-white py-20" aria-label="Depoimentos e cadastro">
+      <section id="cadastro" className="bg-white py-20" aria-label="Depoimentos e cadastro">
         <div className="mx-auto grid max-w-7xl grid-cols-12 gap-8 px-6">
           <div className="col-span-12 lg:col-span-5">
             <Testimonial
-              quote="A StickPay virou nossa camada de Pix sem expor as credenciais da adquirente e ainda deixou o financeiro com eventos padronizados."
+              quote="A StickPay organizou nosso fluxo Pix com status claros, eventos previsíveis e menos ruído para o time financeiro."
               author="Marina Duarte"
               role="COO, Atlas Commerce"
             />
@@ -67,6 +75,7 @@ export default function Home() {
         </div>
       </section>
 
+      <FinalCta />
       <Footer />
     </main>
   );

@@ -46,14 +46,14 @@ export function SignupForm() {
 
   return (
     <form
-      id="cadastro"
+      id="sandbox-pix"
       onSubmit={handleSubmit}
       className="rounded-lg border border-slate-200 bg-slate-50 p-6"
       aria-label="Formulario de cadastro StickPay"
     >
       <h2 className="text-2xl font-black text-primary">Comece agora</h2>
       <p className="mt-2 text-sm leading-6 text-slate-700">
-        Gere uma cobrança Pix mock no padrão MisticPay e veja o contrato que sua loja receberia.
+        Gere uma cobrança Pix de teste e veja como a StickPay organiza o retorno transacional.
       </p>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <label className="text-sm font-semibold text-primary">
@@ -109,7 +109,7 @@ export function SignupForm() {
         {state === "loading" ? "Gerando Pix..." : "Gerar Pix de teste"}
       </button>
       <div className="mt-4 min-h-6 text-sm" aria-live="polite">
-        {state === "success" && <p className="font-semibold text-accent">Cobrança Pix mock gerada via MisticPay.</p>}
+        {state === "success" && <p className="font-semibold text-accent">Cobrança Pix de teste gerada pela StickPay.</p>}
         {state === "error" && <p className="font-semibold text-red-700">Revise os dados e tente novamente.</p>}
       </div>
       {copyPaste && (
