@@ -17,7 +17,7 @@ html {
 body {
   margin: 0;
   background: #f8fafc;
-  color: #0f1724;
+  color: #0b1120;
 }
 
 a,
@@ -25,17 +25,17 @@ button,
 input,
 select,
 textarea {
-  outline-color: #00bfa6;
+  outline-color: #06b6d4;
 }
 
 :focus-visible {
-  outline: 3px solid #00bfa6;
+  outline: 3px solid #06b6d4;
   outline-offset: 3px;
 }
 
 ::selection {
-  background: #00bfa6;
-  color: #0f1724;
+  background: #06b6d4;
+  color: #0b1120;
 }
 
 @keyframes float-panel {

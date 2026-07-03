@@ -9,15 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cta: "#FF6A3D",
-        primary: "#0F1724",
-        accent: "#00BFA6",
+        cta: "#4F46E5",
+        primary: "#0B1120",
+        accent: "#06B6D4",
+        brandSlate: "#0F172A",
+        brandGray: "#64748B",
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Poppins", "sans-serif"],
       },
       boxShadow: {
-        panel: "0 24px 70px rgba(15, 23, 36, 0.14)",
+        panel: "0 24px 70px rgba(11, 17, 32, 0.16)",
       },
     },
   },

@@ -3,7 +3,7 @@ export function Footer() {
     <footer className="bg-primary py-10 text-white">
       <div className="mx-auto grid max-w-7xl grid-cols-12 gap-6 px-6">
         <div className="col-span-12 md:col-span-6">
-          <div className="text-xl font-black">StickPay</div>
+          <img src="/assets/stickpay-logo-dark.svg" alt="StickPay" className="h-12 w-auto" />
           <p className="mt-3 max-w-md text-sm leading-6 text-slate-300">
             Camada Pix para empresas que querem operar como subadquirentes usando a MisticPay como provedora por trás.
           </p>

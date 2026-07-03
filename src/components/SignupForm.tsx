@@ -104,7 +104,7 @@ export function SignupForm() {
       <button
         type="submit"
         disabled={state === "loading"}
-        className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-cta px-5 py-3 font-extrabold text-primary transition duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:brightness-95 active:translate-y-0 disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+        className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-cta px-5 py-3 font-extrabold text-white transition duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110 active:translate-y-0 disabled:cursor-wait disabled:opacity-70 sm:w-auto"
       >
         {state === "loading" ? "Gerando Pix..." : "Gerar Pix de teste"}
       </button>

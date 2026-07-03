@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
-import "@fontsource/inter/800.css";
-import "@fontsource/inter/900.css";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
+import "@fontsource/poppins/800.css";
+import "@fontsource/poppins/900.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: "/assets/og-stickpay.svg",
         width: 1200,
         height: 630,
-        alt: "StickPay gateway de pagamentos",
+        alt: "StickPay subadquirente Pix",
       },
     ],
     locale: "pt_BR",
@@ -35,6 +35,10 @@ export const metadata: Metadata = {
     title: "StickPay",
     description: "Subadquirente Pix com integração MisticPay, webhooks e conciliação.",
     images: ["/assets/og-stickpay.svg"],
+  },
+  icons: {
+    icon: "/assets/stickpay-icon.svg",
+    apple: "/assets/stickpay-icon.svg",
   },
 };
 

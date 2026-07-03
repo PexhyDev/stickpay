@@ -33,7 +33,7 @@ export default function MinimalPage() {
           </p>
           <a
             href="/#cadastro"
-            className="mt-8 inline-flex rounded-lg bg-cta px-6 py-3 font-extrabold text-primary"
+            className="mt-8 inline-flex rounded-lg bg-cta px-6 py-3 font-extrabold text-white"
           >
             Comece agora
           </a>

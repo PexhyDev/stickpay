@@ -204,7 +204,7 @@ export async function handleMisticPayWebhook(request) {
 
 - Meta tags, Open Graph e JSON-LD Product/Organization em `app/layout.tsx`.
 - Componentes com labels, `aria-label`, foco visível e contraste alinhado ao WCAG 2.1 AA.
-- Tipografia Inter via `@fontsource/inter`.
+- Tipografia Poppins via `@fontsource/poppins`.
 
 ## Deploy Vercel
 

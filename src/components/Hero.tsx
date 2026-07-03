@@ -9,27 +9,27 @@ function DashboardMock() {
       aria-label="Mock do painel StickPay com cobranças Pix"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width="720" height="480" rx="28" fill="#0F1724" />
+      <rect width="720" height="480" rx="28" fill="#0B1120" />
       <rect x="32" y="32" width="656" height="416" rx="22" fill="#F8FAFC" />
-      <rect className="animate-scan-line" x="64" y="42" width="120" height="386" rx="22" fill="#00BFA6" />
-      <rect x="64" y="70" width="150" height="20" rx="10" fill="#0F1724" />
-      <rect x="552" y="64" width="92" height="32" rx="10" fill="#FF6A3D" />
+      <rect className="animate-scan-line" x="64" y="42" width="120" height="386" rx="22" fill="#06B6D4" />
+      <rect x="64" y="70" width="150" height="20" rx="10" fill="#0B1120" />
+      <rect x="552" y="64" width="92" height="32" rx="10" fill="#4F46E5" />
       <rect x="64" y="126" width="172" height="96" rx="16" fill="#E2E8F0" />
       <rect x="274" y="126" width="172" height="96" rx="16" fill="#D1FAE5" />
-      <rect x="484" y="126" width="140" height="96" rx="16" fill="#FFE4D6" />
+      <rect x="484" y="126" width="140" height="96" rx="16" fill="#DBEAFE" />
       <rect x="86" y="158" width="78" height="16" rx="8" fill="#64748B" />
-      <rect x="86" y="184" width="110" height="20" rx="10" fill="#0F1724" />
+      <rect x="86" y="184" width="110" height="20" rx="10" fill="#0B1120" />
       <rect x="296" y="158" width="86" height="16" rx="8" fill="#0F766E" />
-      <rect x="296" y="184" width="116" height="20" rx="10" fill="#00BFA6" />
-      <rect x="506" y="158" width="68" height="16" rx="8" fill="#9A3412" />
-      <rect x="506" y="184" width="80" height="20" rx="10" fill="#FF6A3D" />
+      <rect x="296" y="184" width="116" height="20" rx="10" fill="#06B6D4" />
+      <rect x="506" y="158" width="68" height="16" rx="8" fill="#3730A3" />
+      <rect x="506" y="184" width="80" height="20" rx="10" fill="#4F46E5" />
       <rect x="64" y="258" width="330" height="150" rx="18" fill="#FFFFFF" stroke="#CBD5E1" />
-      <path d="M94 366L150 312L205 344L264 285L360 330" stroke="#00BFA6" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M94 366L150 312L205 344L264 285L360 330" stroke="#06B6D4" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
       <rect x="430" y="258" width="194" height="150" rx="18" fill="#FFFFFF" stroke="#CBD5E1" />
-      <rect x="462" y="288" width="42" height="42" rx="8" fill="#0F1724" />
+      <rect x="462" y="288" width="42" height="42" rx="8" fill="#0B1120" />
       <rect x="514" y="292" width="78" height="12" rx="6" fill="#CBD5E1" />
-      <rect x="514" y="316" width="58" height="12" rx="6" fill="#00BFA6" />
-      <rect className="animate-flow-pulse" x="462" y="354" width="132" height="14" rx="7" fill="#FF6A3D" />
+      <rect x="514" y="316" width="58" height="12" rx="6" fill="#06B6D4" />
+      <rect className="animate-flow-pulse" x="462" y="354" width="132" height="14" rx="7" fill="#4F46E5" />
       <path d="M472 298H494V320H472V298ZM478 304V314H488V304H478Z" fill="#F8FAFC" />
     </svg>
   );
@@ -54,7 +54,7 @@ export function Hero() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href="#cadastro"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-cta px-6 py-3 text-base font-extrabold text-primary shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:brightness-95 active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-cta px-6 py-3 text-base font-extrabold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:brightness-110 active:translate-y-0"
             >
               Teste grátis
               <ArrowRight aria-hidden="true" size={18} />

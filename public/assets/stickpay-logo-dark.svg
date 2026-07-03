@@ -1,0 +1,12 @@
+<svg viewBox="0 0 430 120" xmlns="http://www.w3.org/2000/svg" font-family="'Poppins','Century Gothic','Trebuchet MS',Arial,sans-serif">
+  <defs>
+    <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="120" height="120" rx="28" fill="url(#iconGrad)"/>
+  <polygon points="64.5,18 22.5,68 60.5,68 56.5,102 97.5,52 60.5,52" fill="#FFFFFF"/>
+  <text x="145" y="78" font-size="54" font-weight="800" fill="#FFFFFF">Stick<tspan fill="#22D3EE" font-weight="700">Pay</tspan></text>
+  <text x="147" y="106" font-size="13" letter-spacing="3" fill="#94A3B8">PAYMENT GATEWAY</text>
+</svg>

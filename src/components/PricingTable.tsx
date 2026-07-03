@@ -62,7 +62,7 @@ export function PricingTable() {
               <a
                 href={plan.name === "Subadquirente" ? "mailto:vendas@stickpay.example.com" : "#cadastro"}
                 className={`mt-8 inline-flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-extrabold transition duration-300 hover:-translate-y-0.5 active:translate-y-0 ${
-                  plan.highlighted ? "bg-cta text-primary hover:shadow-lg" : "bg-primary text-white hover:bg-slate-800"
+                  plan.highlighted ? "bg-cta text-white hover:shadow-lg hover:brightness-110" : "bg-primary text-white hover:bg-slate-800"
                 }`}
               >
                 {plan.cta}
