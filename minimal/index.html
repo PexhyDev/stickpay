@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StickPay Minimal</title>
+    <style>
+      body { margin: 0; font-family: Inter, Arial, sans-serif; color: #0f1724; background: #fff; }
+      main { max-width: 1120px; margin: 0 auto; padding: 80px 24px; }
+      .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; align-items: start; }
+      .hero { grid-column: span 7; }
+      .cards { grid-column: span 5; display: grid; gap: 16px; }
+      .eyebrow { color: #00bfa6; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: 12px; }
+      h1 { font-size: clamp(40px, 7vw, 72px); line-height: 1; margin: 16px 0; }
+      p { color: #475569; line-height: 1.7; }
+      a { display: inline-block; margin-top: 24px; background: #ff6a3d; color: #0f1724; padding: 14px 22px; border-radius: 8px; font-weight: 800; text-decoration: none; }
+      article { border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; background: #f8fafc; }
+      h2 { margin: 0 0 8px; font-size: 20px; }
+      @media (max-width: 760px) { .hero, .cards { grid-column: span 12; } }
+    </style>
+  </head>
+  <body>
+    <main class="grid">
+      <section class="hero">
+        <div class="eyebrow">StickPay minimal</div>
+        <h1>Aceite pagamentos com segurança e velocidade</h1>
+        <p>Uma versão objetiva com hero, benefícios e CTA para publicar rapidamente.</p>
+        <a href="/#cadastro">Comece agora</a>
+      </section>
+      <section class="cards" aria-label="Benefícios">
+        <article><h2>Integração rápida</h2><p>Comece com endpoints claros e payloads simples.</p></article>
+        <article><h2>Segurança PCI-DSS</h2><p>Tokenização e boas práticas para dados sensíveis.</p></article>
+        <article><h2>Relatórios em tempo real</h2><p>Acompanhe pagamentos e eventos conforme acontecem.</p></article>
+      </section>
+    </main>
+  </body>
+</html>

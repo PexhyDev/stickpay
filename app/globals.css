@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #0f1724;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  outline-color: #00bfa6;
+}
+
+:focus-visible {
+  outline: 3px solid #00bfa6;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #00bfa6;
+  color: #0f1724;
+}
