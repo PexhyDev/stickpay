@@ -37,7 +37,7 @@ export function Hero() {
       <div className="hero-grid absolute inset-0 -z-10 opacity-70 dark:opacity-35" aria-hidden="true" />
 
       <div className="mx-auto grid max-w-7xl grid-cols-12 items-center gap-8 px-6">
-        <div className="col-span-12 lg:col-span-6">
+        <div className="col-span-12 lg:col-span-5">
           <div className="animate-rise-in">
             <p className="inline-flex items-center gap-2 rounded-lg border border-cyan-100 bg-white/85 px-3 py-2 text-sm font-bold uppercase tracking-[0.14em] text-accent shadow-sm backdrop-blur dark:border-cyan-900/60 dark:bg-slate-900/80">
               <ShieldCheck aria-hidden="true" size={16} />
@@ -95,8 +95,8 @@ export function Hero() {
           </div>
         </div>
 
-        <div id="demo" className="col-span-12 lg:col-span-6">
-          <div className="animate-hero-spark hero-showcase group relative mx-auto max-w-[720px]">
+        <div id="demo" className="col-span-12 lg:col-span-7">
+          <div className="animate-hero-spark hero-showcase group relative mx-auto max-w-[860px]">
             <div className="absolute inset-x-8 bottom-8 top-16 rounded-[42px] bg-gradient-to-br from-cyan-200/30 via-indigo-200/20 to-transparent blur-2xl dark:from-cyan-500/10 dark:via-indigo-500/10" aria-hidden="true" />
             <svg
               className="pointer-events-none absolute inset-x-0 top-12 z-0 h-[420px] w-full text-accent/40 transition duration-700 group-hover:text-accent/70 dark:text-accent/30 dark:group-hover:text-accent/60"
@@ -117,8 +117,8 @@ export function Hero() {
               <circle cx="610" cy="184" r="5" fill="currentColor" />
             </svg>
 
-            <div className="relative z-10 grid items-center gap-4 md:grid-cols-[minmax(0,1fr)_220px]">
-              <div className="hero-showcase-shell relative overflow-hidden rounded-lg border border-white/75 bg-white/82 p-4 shadow-panel backdrop-blur transition-all duration-700 group-hover:-translate-y-2 dark:border-slate-700 dark:bg-slate-900/82">
+            <div className="relative z-10 grid items-center gap-4 md:grid-cols-[minmax(0,1fr)_170px] xl:grid-cols-[minmax(0,1fr)_185px]">
+              <div className="hero-showcase-shell relative overflow-hidden rounded-lg border border-white/75 bg-white/82 p-2.5 shadow-panel backdrop-blur transition-all duration-700 group-hover:-translate-y-2 dark:border-slate-700 dark:bg-slate-900/82 md:p-3">
                 <div className="hero-showcase-sheen absolute inset-0" aria-hidden="true" />
                 <div className="absolute inset-x-10 bottom-9 h-20 rounded-full bg-primary/10 blur-2xl transition duration-700 group-hover:bg-accent/20 dark:bg-black/40" aria-hidden="true" />
                 <div className="absolute right-8 top-8 h-28 w-28 rounded-full border border-accent/20 transition duration-700 group-hover:scale-125 group-hover:border-accent/50" aria-hidden="true" />
@@ -128,7 +128,7 @@ export function Hero() {
                     key="spark-hero-official"
                     variant="hero"
                     priority
-                    sizes="(min-width: 1024px) 470px, 90vw"
+                    sizes="(min-width: 1280px) 620px, (min-width: 1024px) 560px, 92vw"
                     className="block h-auto w-full select-none"
                   />
                 </div>
@@ -156,7 +156,7 @@ export function Hero() {
                         <span className="grid h-8 w-8 place-items-center rounded-md bg-cyan-50 text-accent dark:bg-cyan-950/40">
                           <Icon aria-hidden="true" size={16} />
                         </span>
-                        <div>
+                        <div className="min-w-0">
                           <p className="text-xs font-extrabold text-primary dark:text-white">{card.label}</p>
                           <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">{card.detail}</p>
                         </div>

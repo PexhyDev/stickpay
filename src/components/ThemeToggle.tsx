@@ -54,7 +54,7 @@ export function ThemeToggle() {
 
   return (
     <div
-      className="inline-flex h-11 items-center rounded-lg border border-slate-200 bg-white/90 p-1 shadow-sm backdrop-blur dark:border-slate-700 dark:bg-slate-900/90"
+      className="inline-flex h-10 items-center rounded-full border border-slate-200 bg-white/75 p-1 shadow-sm backdrop-blur dark:border-slate-700 dark:bg-slate-900/70"
       role="group"
       aria-label="Selecionar tema"
     >
@@ -70,14 +70,14 @@ export function ThemeToggle() {
             aria-pressed={active}
             title={`Tema ${option.label}`}
             onClick={() => selectTheme(option.mode)}
-            className={`inline-flex h-9 min-w-9 items-center justify-center gap-2 rounded-md px-2.5 text-xs font-bold transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] ${
+            className={`grid h-8 w-8 place-items-center rounded-full transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.96] ${
               active
                 ? "bg-primary text-white shadow-sm dark:bg-accent dark:text-primary"
-                : "text-slate-600 hover:bg-slate-100 hover:text-primary dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+                : "text-slate-500 hover:bg-slate-100 hover:text-primary dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
             }`}
           >
-            <Icon aria-hidden="true" size={16} />
-            <span className="hidden lg:inline">{option.label}</span>
+            <Icon aria-hidden="true" size={15} />
+            <span className="sr-only">{option.label}</span>
           </button>
         );
       })}
