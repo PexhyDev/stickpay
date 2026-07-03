@@ -127,6 +127,34 @@ textarea {
   transform: translate3d(14px, 3px, 34px);
 }
 
+.spark-hero-image-frame::before {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 50% 40%, transparent 58%, rgba(15, 23, 42, 0.08) 100%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), transparent 28%, transparent 72%, rgba(6, 182, 212, 0.18));
+  transition: opacity 700ms ease;
+}
+
+.spark-hero-image-frame::after {
+  position: absolute;
+  inset: 1px;
+  z-index: 3;
+  pointer-events: none;
+  content: "";
+  border-radius: 16px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.48),
+    inset 0 -34px 70px rgba(15, 23, 42, 0.06);
+}
+
+.hero-showcase:hover .spark-hero-image-frame::before {
+  opacity: 0.62;
+}
+
 @keyframes float-panel {
   0%,
   100% {

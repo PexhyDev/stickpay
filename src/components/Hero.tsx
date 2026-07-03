@@ -123,18 +123,12 @@ export function Hero() {
                 <div className="absolute inset-x-10 bottom-9 h-20 rounded-full bg-primary/10 blur-2xl transition duration-700 group-hover:bg-accent/20 dark:bg-black/40" aria-hidden="true" />
                 <div className="absolute right-8 top-8 h-28 w-28 rounded-full border border-accent/20 transition duration-700 group-hover:scale-125 group-hover:border-accent/50" aria-hidden="true" />
 
-                <div className="relative z-10 mx-auto w-[82%] transition-all duration-700 group-hover:scale-[1.035] group-hover:-rotate-1 md:w-[84%]">
+                <div className="spark-hero-image-frame relative z-10 mx-auto w-full overflow-hidden rounded-[18px] border border-white/80 shadow-[0_24px_70px_rgba(15,23,42,0.16)] transition-all duration-700 group-hover:scale-[1.025] group-hover:-rotate-1 group-hover:shadow-[0_30px_90px_rgba(6,182,212,0.24)] dark:border-slate-700/80 dark:shadow-[0_24px_80px_rgba(0,0,0,0.32)]">
                   <SparkMascot
-                    variant="light"
+                    variant="hero"
                     priority
                     sizes="(min-width: 1024px) 470px, 90vw"
-                    className="block h-auto w-full select-none drop-shadow-[0_28px_45px_rgba(15,23,42,0.16)] dark:hidden"
-                  />
-                  <SparkMascot
-                    variant="dark"
-                    priority
-                    sizes="(min-width: 1024px) 470px, 90vw"
-                    className="hidden h-auto w-full select-none drop-shadow-[0_0_38px_rgba(6,182,212,0.18)] dark:block"
+                    className="block h-auto w-full select-none"
                   />
                 </div>
               </div>
