@@ -191,6 +191,18 @@ textarea {
   }
 }
 
+@keyframes flow-fill {
+  0%,
+  100% {
+    transform: scaleX(0.38);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
 .animate-float-panel {
   animation: float-panel 7s ease-in-out infinite;
 }
@@ -236,6 +248,11 @@ textarea {
   animation: shimmer 3.8s ease-in-out infinite;
 }
 
+.animate-flow-fill {
+  animation: flow-fill 6s ease-in-out infinite;
+  transform-origin: left center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -251,7 +268,8 @@ textarea {
   .animate-rise-in,
   .animate-hero-spark,
   .animate-status-card,
-  .animate-shimmer {
+  .animate-shimmer,
+  .animate-flow-fill {
     animation: none;
   }
 

@@ -67,6 +67,7 @@ export function SparkMascot({ variant = "primary", className = "", priority = fa
       priority={priority}
       sizes={sizes}
       className={className}
+      style={{ width: "100%", height: "auto", maxWidth: "100%" }}
     />
   );
 }
