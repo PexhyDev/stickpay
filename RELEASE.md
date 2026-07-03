@@ -8,6 +8,10 @@
 - Endpoint `POST /api/pix/charges` para cobrança Pix.
 - Endpoint `POST /api/pix/webhook` para eventos de pagamento.
 - Adapter interno genérico em `src/lib/paymentProvider.ts`.
+- Rotas iniciais de autenticação: `/login`, `/cadastro`, `/recuperar-senha`.
+- Middleware protegendo `/dashboard`.
+- Estrutura inicial de área logada e páginas privadas.
+- Design system interno em `src/components/ui`.
 - Versão minimal em `/minimal` e `minimal/index.html`.
 - Testes unitários, E2E, CI e documentação.
 
@@ -18,6 +22,8 @@
 - Configurar `PAYMENT_PROVIDER_MODE=live`.
 - Configurar `PAYMENT_PROVIDER_BASE_URL`.
 - Configurar `PAYMENT_PROVIDER_CLIENT_ID` e `PAYMENT_PROVIDER_CLIENT_SECRET`.
+- Substituir sessão mock por autenticação de produção.
+- Definir permissões, logs de atividade e política de logout.
 - Definir estratégia de assinatura/validação de webhooks.
 - Trocar `stickpay.example.com` pelo domínio real.
 - Trocar `vendas@stickpay.example.com` pelo email oficial.

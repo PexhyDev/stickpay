@@ -43,3 +43,16 @@ test("mock Pix APIs return charge and accept payment webhook", async ({ request 
 
   expect(webhookResponse.ok()).toBeTruthy();
 });
+
+test("dashboard is protected and mock login opens private area", async ({ page }) => {
+  await page.goto("/dashboard");
+  await expect(page).toHaveURL(/\/login\?next=%2Fdashboard/);
+
+  await page.getByLabel("Email").fill("ops@stickpay.example.com");
+  await page.getByLabel("Senha").fill("senha-demo");
+  await page.getByRole("button", { name: "Entrar no painel" }).click();
+
+  await expect(page).toHaveURL(/\/dashboard/);
+  await expect(page.getByRole("heading", { name: "Operação StickPay" })).toBeVisible();
+  await expect(page.getByText("Saldo disponível")).toBeVisible();
+});

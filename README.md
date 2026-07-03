@@ -148,6 +148,42 @@ await stickpay.pix.createCharge({
 - Registrar `externalId` para conciliação e idempotência.
 - Tratar eventos MED como fluxo operacional sensível.
 
+## Próxima fase funcional
+
+O projeto já inclui uma base organizada para evoluir a StickPay para plataforma logada:
+
+- `/login`, `/cadastro` e `/recuperar-senha`
+- sessão mock com cookie HTTP-only para desenvolvimento
+- `middleware.ts` protegendo `/dashboard`
+- logout em `POST /api/auth/logout`
+- área logada em `/dashboard`
+- páginas iniciais para transações, cobranças, clientes, API, webhooks, configurações e suporte
+- design system em `src/components/ui`
+- componentes de dashboard em `src/components/dashboard`
+
+Esta base ainda não representa autenticação de produção. A próxima etapa deve conectar um provedor real de identidade, validação de sessão, permissões, logs de atividade e 2FA.
+
+## Design system interno
+
+Componentes preparados para o produto logado:
+
+- `Button`
+- `Input`
+- `Select`
+- `Modal`
+- `Card`
+- `Badge`
+- `StatusBadge`
+- `Table`
+- `EmptyState`
+- `Toast`
+- `Sidebar`
+- `Header`
+- `StatCard`
+- `TransactionRow`
+- `PaymentStatus`
+- `CopyButton`
+
 ## SEO e acessibilidade
 
 - Meta tags, Open Graph e JSON-LD Product/Organization em `app/layout.tsx`.

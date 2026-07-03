@@ -6,6 +6,8 @@
 - Adiciona seções de produto, fluxo transacional, API, segurança, público-alvo e CTA final.
 - Remove menções públicas a processadores externos e mantém a integração abstraída no backend.
 - Adiciona microinterações de hover/motion usando a identidade visual oficial.
+- Prepara a próxima fase funcional com auth mock, middleware, rotas privadas e dashboard inicial.
+- Organiza design system interno para o produto logado.
 - Inclui testes unitários, E2E com Playwright, CI e documentação de lançamento.
 
 ## Validação

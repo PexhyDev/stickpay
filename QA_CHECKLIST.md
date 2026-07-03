@@ -21,3 +21,6 @@
 19. Navegação por teclado mostra foco visível.
 20. Não existe menção pública a fornecedor externo de processamento.
 21. `npm run lint`, `npm test`, `npm run test:e2e`, `npm run build` e `npm audit` passam.
+22. `/dashboard` redireciona para `/login` sem sessão.
+23. Login mock cria sessão de demonstração e libera o dashboard.
+24. Rotas de dashboard existem para transações, cobranças, clientes, API, webhooks, configurações e suporte.

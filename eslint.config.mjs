@@ -18,6 +18,8 @@ export default [
         FormData: "readonly",
         Response: "readonly",
         setTimeout: "readonly",
+        window: "readonly",
+        navigator: "readonly",
       },
     },
   },
