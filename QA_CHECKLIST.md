@@ -12,7 +12,7 @@
 10. Seção API mostra exemplo conceitual sem expor processador externo.
 11. Seção Segurança fala de controle operacional sem inventar certificações.
 12. Seção Para quem lista públicos-alvo do produto.
-13. Tabela de planos mostra Start, Scale e Operação.
+13. Seção de taxa fixa mostra R$ 0,40 por transação e regras sem porcentagem escondida.
 14. Formulário valida email, CPF e valor.
 15. Formulário dispara `/api/pix/charges`.
 16. `/api/pix/charges` retorna `processor: "internal"`.

@@ -1,11 +1,11 @@
 import { ApiIntegration } from "@/src/components/ApiIntegration";
 import { AudienceGrid } from "@/src/components/AudienceGrid";
 import { BenefitCard } from "@/src/components/BenefitCard";
+import { FixedRateSection } from "@/src/components/FixedRateSection";
 import { FinalCta } from "@/src/components/FinalCta";
 import { Footer } from "@/src/components/Footer";
 import { Header } from "@/src/components/Header";
 import { Hero } from "@/src/components/Hero";
-import { PricingTable } from "@/src/components/PricingTable";
 import { ProductShowcase } from "@/src/components/ProductShowcase";
 import { SecurityControl } from "@/src/components/SecurityControl";
 import { SignupForm } from "@/src/components/SignupForm";
@@ -37,11 +37,11 @@ export default function Home() {
       <Header />
       <Hero />
 
-      <section id="beneficios" className="bg-white py-20" aria-labelledby="benefits-title">
+      <section id="beneficios" className="bg-white py-20 dark:bg-slate-900" aria-labelledby="benefits-title">
         <div className="mx-auto grid max-w-7xl grid-cols-12 gap-6 px-6">
           <div className="col-span-12 md:col-span-5">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Base operacional</p>
-            <h2 id="benefits-title" className="mt-3 text-3xl font-bold text-primary md:text-4xl">
+            <h2 id="benefits-title" className="mt-3 text-3xl font-bold text-primary dark:text-white md:text-4xl">
               Pagamentos Pix com controle para equipes que operam volume.
             </h2>
           </div>
@@ -58,9 +58,9 @@ export default function Home() {
       <ApiIntegration />
       <SecurityControl />
       <AudienceGrid />
-      <PricingTable />
+      <FixedRateSection />
 
-      <section id="cadastro" className="bg-white py-20" aria-label="Depoimentos e cadastro">
+      <section id="cadastro" className="bg-white py-20 dark:bg-slate-900" aria-label="Depoimentos e cadastro">
         <div className="mx-auto grid max-w-7xl grid-cols-12 gap-8 px-6">
           <div className="col-span-12 lg:col-span-5">
             <Testimonial

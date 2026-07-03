@@ -53,18 +53,30 @@ const schema = {
     url: "https://stickpay.example.com",
   },
   offers: {
-    "@type": "AggregateOffer",
+    "@type": "Offer",
     priceCurrency: "BRL",
-    lowPrice: "0",
-    highPrice: "custom",
-    offerCount: "3",
+    price: "0.40",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: "0.40",
+      priceCurrency: "BRL",
+      unitText: "transacao Pix",
+    },
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className="font-sans">
+        <Script
+          id="stickpay-theme"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html:
+              "(() => { try { const t = localStorage.getItem('stickpay-theme') || 'system'; const d = window.matchMedia('(prefers-color-scheme: dark)').matches; document.documentElement.classList.toggle('dark', t === 'dark' || (t === 'system' && d)); document.documentElement.dataset.theme = t; } catch (_) {} })();",
+          }}
+        />
         {children}
         <Script
           id="stickpay-schema"

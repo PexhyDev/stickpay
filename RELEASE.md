@@ -4,7 +4,7 @@
 
 - Landing page premium para a StickPay como plataforma de pagamentos Pix.
 - Identidade visual oficial com logo, Poppins e paleta da marca.
-- Seções de produto, fluxo transacional, API, segurança, público-alvo, planos e CTA final.
+- Seções de produto, fluxo transacional, API, segurança, público-alvo, taxa fixa e CTA final.
 - Endpoint `POST /api/pix/charges` para cobrança Pix.
 - Endpoint `POST /api/pix/webhook` para eventos de pagamento.
 - Adapter interno genérico em `src/lib/paymentProvider.ts`.
