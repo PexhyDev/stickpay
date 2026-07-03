@@ -2,25 +2,25 @@ import { Check } from "lucide-react";
 
 const plans = [
   {
-    name: "Starter",
+    name: "Pix Start",
     price: "R$ 0",
-    description: "Para validar checkout e primeiros pagamentos.",
-    features: ["Sandbox completo", "Tokenizacao mock", "Suporte por email"],
+    description: "Para validar cobranças Pix e webhooks.",
+    features: ["Sandbox MisticPay", "QR Code Pix", "Webhook de depósito"],
     cta: "Teste grátis",
   },
   {
-    name: "Business",
+    name: "Pix Scale",
     price: "R$ 499",
-    description: "Para operacoes com alto volume e times financeiros.",
-    features: ["Webhooks", "Relatorios em tempo real", "SLA operacional"],
+    description: "Para operação com volume, suporte e conciliação.",
+    features: ["Conciliação em tempo real", "Repasse operacional", "SLA de integração"],
     cta: "Comece agora",
     highlighted: true,
   },
   {
-    name: "Enterprise",
+    name: "Subadquirente",
     price: "Contato",
-    description: "Para requisitos customizados, risco e governanca.",
-    features: ["Contrato dedicado", "Suporte prioritario", "Arquitetura consultiva"],
+    description: "Para regras comerciais, risco e governança sob medida.",
+    features: ["Contrato dedicado", "Gestão MED", "Arquitetura consultiva"],
     cta: "Falar com vendas",
   },
 ];
@@ -33,7 +33,7 @@ export function PricingTable() {
           <div className="col-span-12 md:col-span-6">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Planos</p>
             <h2 id="pricing-title" className="mt-3 text-3xl font-bold text-primary md:text-4xl">
-              Escolha o plano certo para o seu volume
+              Comece com Pix e evolua para operação de subadquirência
             </h2>
           </div>
         </div>
@@ -41,7 +41,7 @@ export function PricingTable() {
           {plans.map((plan) => (
             <article
               key={plan.name}
-              className={`rounded-lg border p-6 ${
+              className={`rounded-lg border p-6 transition duration-300 hover:-translate-y-1 hover:shadow-panel ${
                 plan.highlighted ? "border-accent bg-white shadow-panel" : "border-slate-200 bg-white"
               }`}
             >
@@ -60,9 +60,9 @@ export function PricingTable() {
                 ))}
               </ul>
               <a
-                href={plan.name === "Enterprise" ? "mailto:vendas@stickpay.example.com" : "#cadastro"}
-                className={`mt-8 inline-flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-extrabold ${
-                  plan.highlighted ? "bg-cta text-primary" : "bg-primary text-white"
+                href={plan.name === "Subadquirente" ? "mailto:vendas@stickpay.example.com" : "#cadastro"}
+                className={`mt-8 inline-flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-extrabold transition duration-300 hover:-translate-y-0.5 active:translate-y-0 ${
+                  plan.highlighted ? "bg-cta text-primary hover:shadow-lg" : "bg-primary text-white hover:bg-slate-800"
                 }`}
               >
                 {plan.cta}

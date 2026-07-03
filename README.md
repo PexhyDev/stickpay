@@ -1,6 +1,8 @@
 # StickPay
 
-Landing page profissional para a StickPay, um gateway de pagamentos B2B/B2C criado com Next.js, TypeScript e Tailwind CSS.
+Landing page e sandbox inicial da StickPay, uma camada de subadquirência Pix sobre a MisticPay.
+
+A ideia do produto é simples: a loja integra com a StickPay; a StickPay protege as credenciais, normaliza payloads e chama a MisticPay por trás para criar cobranças Pix, receber webhooks e entregar um contrato mais amigável para o lojista.
 
 ## Stack
 
@@ -29,34 +31,45 @@ No Windows PowerShell com policy restritiva, use `npm.cmd run dev`.
 Copie `.env.example` para `.env.local`.
 
 ```bash
-API_KEY=sk_test_stickpay_mock
-SECRET=whsec_stickpay_mock
+STICKPAY_API_KEY=sk_test_stickpay_mock
+MISTICPAY_MODE=mock
+MISTICPAY_BASE_URL=https://api.misticpay.com/api
+MISTICPAY_CLIENT_ID=seu_client_id
+MISTICPAY_CLIENT_SECRET=seu_client_secret
+MISTICPAY_WEBHOOK_SECRET=whsec_misticpay_mock
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-Segurança esperada para produção:
+Use `MISTICPAY_MODE=mock` para desenvolvimento local. Use `MISTICPAY_MODE=live` somente no backend com `MISTICPAY_CLIENT_ID` e `MISTICPAY_CLIENT_SECRET` reais.
 
-- TLS obrigatório em todos os endpoints.
-- Nunca armazenar PAN, CVV ou dados completos de cartão.
-- Usar tokenização antes de criar transações.
-- Validar assinatura de webhook com `SECRET`.
-- Aplicar rate limiting por IP/chave de API.
-- Restringir CORS a domínios confiáveis.
-- Guardar `API_KEY` e `SECRET` somente no servidor.
+## MisticPay
 
-## Endpoints mock
+Segundo a documentação fornecida:
 
-### POST `/api/tokenize`
+- URL base: `https://api.misticpay.com/api`
+- Autenticação: headers `ci` e `cs`
+- Criar cobrança Pix: `POST /api/transactions/create`
+- Consultar transação: `POST /api/transactions/check`
+- Listar transações: `GET /api/users/transactions/list/:page`
+- Saldo: `GET /api/users/balance`
+- Saque Pix: `POST /api/transactions/withdraw`
+- Webhooks: depósito Pix, saque Pix e eventos MED
 
-Recebe dados de cartão e retorna um token mock. O exemplo usa PAN apenas para sandbox.
+## Endpoints StickPay mock
+
+### POST `/api/pix/charges`
+
+Cria uma cobrança Pix na StickPay. Em `mock`, simula a resposta da MisticPay. Em `live`, chama `POST https://api.misticpay.com/api/transactions/create`.
+
+Payload:
 
 ```json
 {
-  "number": "4111111111111111",
-  "expMonth": "12",
-  "expYear": "2030",
-  "cvv": "123",
-  "holderName": "Cliente StickPay"
+  "amount": 49.9,
+  "payerName": "Cliente StickPay",
+  "payerDocument": "12345678909",
+  "externalId": "checkout-1042",
+  "description": "Pedido 1042"
 }
 ```
 
@@ -64,124 +77,138 @@ Resposta:
 
 ```json
 {
-  "token": "tok_mock",
-  "brand": "visa",
-  "last4": "1111",
-  "holderName": "Cliente StickPay",
-  "expiresAt": "2030-01-01T00:00:00.000Z"
-}
-```
-
-### POST `/api/transactions`
-
-Cria transação mock a partir de um token.
-
-```json
-{
-  "amount": 12990,
+  "id": "sp_pix_31484480",
+  "provider": "misticpay",
+  "providerTransactionId": "31484480",
+  "status": "pending",
+  "providerState": "PENDENTE",
+  "amount": 49.9,
+  "fee": 0.75,
   "currency": "BRL",
-  "paymentToken": "tok_mock",
-  "customer": {
-    "email": "cliente@example.com"
+  "payer": {
+    "name": "Cliente StickPay",
+    "document": "12345678909"
+  },
+  "pix": {
+    "copyPaste": "000201010212...",
+    "qrCodeBase64": null,
+    "qrcodeUrl": "https://api.qrserver.com/..."
   }
 }
 ```
 
-Resposta:
+### POST `/api/pix/webhook`
+
+Recebe webhook da MisticPay e normaliza o evento para o contrato StickPay.
+
+Webhook de depósito:
 
 ```json
 {
-  "id": "txn_mock",
-  "amount": 12990,
-  "currency": "BRL",
-  "status": "approved",
-  "authorizationCode": "123456",
-  "customer": {
-    "email": "cliente@example.com"
+  "transactionId": 31484480,
+  "transactionType": "DEPOSITO",
+  "transactionMethod": "PIX",
+  "clientName": "Nome do cliente",
+  "clientDocument": "12345678909",
+  "status": "COMPLETO",
+  "value": 49.9,
+  "fee": 0.75
+}
+```
+
+Webhook MED:
+
+```json
+{
+  "event": "INFRACTION",
+  "infraction": {
+    "id": 42,
+    "externalId": "INF-2026-001",
+    "type": "FRAUD",
+    "status": "WAITING_PSP",
+    "amount": 150,
+    "currency": "BRL"
   },
-  "createdAt": "2030-01-01T00:00:00.000Z"
+  "transaction": {
+    "transactionId": "TXN-12345",
+    "status": "COMPLETO"
+  }
 }
 ```
 
-### POST `/api/webhook`
+## Snippets
 
-Recebe notificações e registra no console.
-
-```json
-{
-  "event": "transaction.updated",
-  "transactionId": "txn_mock",
-  "status": "approved",
-  "occurredAt": "2030-01-01T00:00:00.000Z"
-}
-```
-
-## Snippets de integração
-
-### Cadastro com validação
+### Criar cobrança Pix
 
 ```js
-function validateSignup({ name, email }) {
-  if (!name || name.length < 2) return "Informe seu nome.";
-  if (!email || !email.includes("@")) return "Informe um email válido.";
-  return null;
-}
-```
-
-### Tokenização e transação
-
-```js
-async function checkout() {
-  const tokenResponse = await fetch("/api/tokenize", {
+async function createPixCharge() {
+  const response = await fetch("/api/pix/charges", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "X-StickPay-Key": process.env.STICKPAY_API_KEY
+    },
     body: JSON.stringify({
-      number: "4111111111111111",
-      expMonth: "12",
-      expYear: "2030",
-      cvv: "123",
-      holderName: "Cliente StickPay"
-    })
-  });
-  const { token } = await tokenResponse.json();
-
-  const transactionResponse = await fetch("/api/transactions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      amount: 12990,
-      currency: "BRL",
-      paymentToken: token,
-      customer: { email: "cliente@example.com" }
+      amount: 49.9,
+      payerName: "Cliente StickPay",
+      payerDocument: "12345678909",
+      externalId: "checkout-1042",
+      description: "Pedido 1042"
     })
   });
 
-  return transactionResponse.json();
+  return response.json();
+}
+```
+
+### Adapter MisticPay real
+
+```js
+async function createMisticPayTransaction(payload) {
+  const response = await fetch("https://api.misticpay.com/api/transactions/create", {
+    method: "POST",
+    headers: {
+      ci: process.env.MISTICPAY_CLIENT_ID,
+      cs: process.env.MISTICPAY_CLIENT_SECRET,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) throw new Error("MisticPay request failed");
+  return response.json();
 }
 ```
 
 ### Webhook handler
 
 ```js
-export async function handleWebhook(request) {
-  const signature = request.headers.get("x-stickpay-signature");
-  if (!signature) return new Response("Missing signature", { status: 401 });
-
+export async function handleMisticPayWebhook(request) {
   const event = await request.json();
-  console.log("StickPay event", event);
+  console.log("MisticPay event", event);
   return Response.json({ received: true });
 }
 ```
 
+## Segurança
+
+- TLS obrigatório em produção.
+- Nunca expor `MISTICPAY_CLIENT_SECRET` no frontend.
+- Validar assinatura/origem dos webhooks quando a MisticPay disponibilizar o segredo/formato.
+- Aplicar rate limiting por IP e chave de API.
+- Restringir CORS aos domínios da StickPay e dos lojistas permitidos.
+- Registrar `externalId` para conciliação e idempotência.
+- Tratar eventos MED como fluxo operacional sensível.
+
 ## SEO e acessibilidade
 
-- Meta tags, Open Graph e JSON-LD Product/Organization configurados em `app/layout.tsx`.
+- Meta tags, Open Graph e JSON-LD Product/Organization em `app/layout.tsx`.
 - Componentes com labels, `aria-label`, foco visível e contraste alinhado ao WCAG 2.1 AA.
-- Tipografia Inter via `next/font/google`.
+- Tipografia Inter via `@fontsource/inter`.
 
 ## Deploy Vercel
 
 1. Conecte o repositório no Vercel.
-2. Configure `API_KEY`, `SECRET` e `NEXT_PUBLIC_APP_URL`.
+2. Configure as variáveis `STICKPAY_API_KEY`, `MISTICPAY_*` e `NEXT_PUBLIC_APP_URL`.
 3. Use `npm run build` como build command.
 4. Publique a branch `main` após aprovação do PR.

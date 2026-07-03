@@ -6,22 +6,27 @@ describe("SignupForm", () => {
   beforeEach(() => {
     vi.stubGlobal(
       "fetch",
-      vi
-        .fn()
-        .mockResolvedValueOnce({ json: async () => ({ token: "tok_test" }) })
-        .mockResolvedValueOnce({ json: async () => ({ status: "approved" }) }),
+      vi.fn().mockResolvedValueOnce({
+        json: async () => ({
+          pix: {
+            copyPaste: "000201010212STICKPAYPIXMOCK",
+          },
+        }),
+      }),
     );
   });
 
-  it("submits signup and calls mock checkout endpoints", async () => {
+  it("submits signup and creates a mock Pix charge", async () => {
     render(<SignupForm />);
 
     fireEvent.change(screen.getByLabelText(/nome/i), { target: { value: "Ana" } });
     fireEvent.change(screen.getByLabelText(/email/i), { target: { value: "ana@empresa.com" } });
-    fireEvent.click(screen.getByRole("button", { name: /comece agora/i }));
+    fireEvent.change(screen.getByLabelText(/cpf do pagador/i), { target: { value: "12345678909" } });
+    fireEvent.change(screen.getByLabelText(/valor pix/i), { target: { value: "49.90" } });
+    fireEvent.click(screen.getByRole("button", { name: /gerar pix de teste/i }));
 
-    await waitFor(() => expect(screen.getByText(/sandbox acionado/i)).toBeInTheDocument());
-    expect(fetch).toHaveBeenCalledWith("/api/tokenize", expect.any(Object));
-    expect(fetch).toHaveBeenCalledWith("/api/transactions", expect.any(Object));
+    await waitFor(() => expect(screen.getByText(/cobrança pix mock gerada/i)).toBeInTheDocument());
+    expect(screen.getByDisplayValue(/STICKPAYPIXMOCK/i)).toBeInTheDocument();
+    expect(fetch).toHaveBeenCalledWith("/api/pix/charges", expect.any(Object));
   });
 });

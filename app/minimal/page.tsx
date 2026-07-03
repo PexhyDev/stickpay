@@ -1,21 +1,21 @@
 import { BenefitCard } from "@/src/components/BenefitCard";
-import { Code2, ShieldCheck, Timer } from "lucide-react";
+import { BellRing, QrCode, ShieldCheck } from "lucide-react";
 
 const benefits = [
   {
-    icon: Code2,
-    title: "Integração rápida",
-    description: "Comece com endpoints claros e payloads simples.",
+    icon: QrCode,
+    title: "Pix imediato",
+    description: "Crie QR Code e copia e cola com contrato simples.",
   },
   {
     icon: ShieldCheck,
-    title: "Segurança PCI-DSS",
-    description: "Tokenizacao e boas praticas para dados sensiveis.",
+    title: "MisticPay protegida",
+    description: "Credenciais ci/cs ficam sempre no backend.",
   },
   {
-    icon: Timer,
-    title: "Tempo real",
-    description: "Acompanhe pagamentos e eventos conforme acontecem.",
+    icon: BellRing,
+    title: "Webhooks Pix",
+    description: "Normalize depósitos, saques e eventos MED.",
   },
 ];
 
@@ -26,10 +26,10 @@ export default function MinimalPage() {
         <div className="col-span-12 md:col-span-7">
           <p className="text-sm font-bold uppercase tracking-[0.14em] text-accent">StickPay minimal</p>
           <h1 className="mt-4 text-4xl font-black text-primary md:text-6xl">
-            Aceite pagamentos com segurança e velocidade
+            Aceite Pix com segurança e velocidade
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-            Uma versao objetiva com hero, beneficios e CTA para publicar rapidamente.
+            Uma versão objetiva para validar a StickPay como camada Pix sobre a MisticPay.
           </p>
           <a
             href="/#cadastro"

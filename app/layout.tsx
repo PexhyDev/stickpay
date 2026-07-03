@@ -9,14 +9,14 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://stickpay.example.com"),
-  title: "StickPay | Gateway de pagamentos B2B/B2C",
+  title: "StickPay | Subadquirente Pix via MisticPay",
   description:
-    "Aceite pagamentos com segurança e velocidade usando tokenização, relatórios em tempo real e integrações simples.",
-  keywords: ["gateway de pagamentos", "pagamentos B2B", "pagamentos B2C", "tokenização", "PCI-DSS"],
+    "Aceite Pix com segurança e velocidade usando a StickPay como camada de checkout, webhooks e conciliação sobre a MisticPay.",
+  keywords: ["gateway Pix", "subadquirente Pix", "MisticPay", "checkout Pix", "webhook Pix"],
   openGraph: {
-    title: "StickPay | Aceite pagamentos com segurança e velocidade",
+    title: "StickPay | Aceite Pix com segurança e velocidade",
     description:
-      "Gateway de pagamentos B2B/B2C com integração rápida, segurança PCI-DSS e observabilidade financeira.",
+      "Camada Pix para criar cobranças, normalizar webhooks e operar sobre a MisticPay.",
     url: "https://stickpay.example.com",
     siteName: "StickPay",
     images: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "StickPay",
-    description: "Gateway de pagamentos B2B/B2C rápido, seguro e pronto para escala.",
+    description: "Subadquirente Pix com integração MisticPay, webhooks e conciliação.",
     images: ["/assets/og-stickpay.svg"],
   },
 };
@@ -42,7 +42,7 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "Product",
   name: "StickPay",
-  description: "Gateway de pagamentos B2B/B2C com tokenização e relatórios em tempo real.",
+  description: "Subadquirente Pix com checkout, webhooks e integração MisticPay.",
   brand: {
     "@type": "Organization",
     name: "StickPay",

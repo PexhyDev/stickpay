@@ -1,35 +1,45 @@
 import { expect, test } from "@playwright/test";
 
-test("signup triggers mock checkout flow", async ({ page }) => {
+test("signup creates a mock Pix charge", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("Nome").fill("Time StickPay");
   await page.getByLabel("Email").fill("ops@stickpay.example.com");
-  await page.getByRole("button", { name: "Comece agora" }).click();
+  await page.getByLabel("CPF do pagador").fill("12345678909");
+  await page.getByLabel("Valor Pix").fill("49.90");
+  await page.getByRole("button", { name: "Gerar Pix de teste" }).click();
 
-  await expect(page.getByText("Cadastro recebido. Sandbox acionado.")).toBeVisible();
+  await expect(page.getByText("Cobrança Pix mock gerada via MisticPay.")).toBeVisible();
+  await expect(page.getByLabel("Pix copia e cola")).toHaveValue(/000201010212/);
 });
 
-test("mock checkout APIs return token and transaction", async ({ request }) => {
-  const tokenResponse = await request.post("/api/tokenize", {
+test("mock Pix APIs return charge and accept MisticPay webhook", async ({ request }) => {
+  const chargeResponse = await request.post("/api/pix/charges", {
     data: {
-      number: "4111111111111111",
-      expMonth: "12",
-      expYear: "2030",
-      cvv: "123",
-      holderName: "Cliente Teste",
+      amount: 49.9,
+      payerName: "Cliente Teste",
+      payerDocument: "12345678909",
+      externalId: "checkout-1042",
+      description: "Checkout 1042",
     },
   });
-  expect(tokenResponse.ok()).toBeTruthy();
-  const tokenized = await tokenResponse.json();
+  expect(chargeResponse.status()).toBe(201);
+  const charge = await chargeResponse.json();
 
-  const transactionResponse = await request.post("/api/transactions", {
+  expect(charge.provider).toBe("misticpay");
+  expect(charge.pix.copyPaste).toContain("000201010212");
+
+  const webhookResponse = await request.post("/api/pix/webhook", {
     data: {
-      amount: 12990,
-      currency: "BRL",
-      paymentToken: tokenized.token,
-      customer: { email: "cliente@example.com" },
+      transactionId: charge.providerTransactionId,
+      transactionType: "DEPOSITO",
+      transactionMethod: "PIX",
+      clientName: "Cliente Teste",
+      clientDocument: "12345678909",
+      status: "COMPLETO",
+      value: 49.9,
+      fee: 0.75,
     },
   });
 
-  expect(transactionResponse.status()).toBe(201);
+  expect(webhookResponse.ok()).toBeTruthy();
 });

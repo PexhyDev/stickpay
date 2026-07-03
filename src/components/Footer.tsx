@@ -5,17 +5,20 @@ export function Footer() {
         <div className="col-span-12 md:col-span-6">
           <div className="text-xl font-black">StickPay</div>
           <p className="mt-3 max-w-md text-sm leading-6 text-slate-300">
-            Infraestrutura de pagamentos para empresas que precisam vender com seguranca, velocidade e rastreabilidade.
+            Camada Pix para empresas que querem operar como subadquirentes usando a MisticPay como provedora por trás.
           </p>
         </div>
         <div className="col-span-12 flex flex-wrap gap-5 text-sm md:col-span-6 md:justify-end">
-          <a href="#beneficios" className="hover:text-accent">
+          <a href="#beneficios" className="transition hover:-translate-y-0.5 hover:text-accent">
             Beneficios
           </a>
-          <a href="#precos" className="hover:text-accent">
+          <a href="#arquitetura" className="transition hover:-translate-y-0.5 hover:text-accent">
+            Arquitetura
+          </a>
+          <a href="#precos" className="transition hover:-translate-y-0.5 hover:text-accent">
             Precos
           </a>
-          <a href="/minimal" className="hover:text-accent">
+          <a href="/minimal" className="transition hover:-translate-y-0.5 hover:text-accent">
             Minimal
           </a>
         </div>
