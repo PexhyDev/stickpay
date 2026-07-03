@@ -43,7 +43,10 @@ export function Hero() {
               <ShieldCheck aria-hidden="true" size={16} />
               Plataforma de pagamentos Pix
             </p>
-            <h1 id="hero-title" className="mt-4 text-4xl font-black leading-[1.03] text-primary dark:text-white md:text-6xl">
+            <h1
+              id="hero-title"
+              className="mt-4 max-w-[620px] text-4xl font-black leading-[1.04] tracking-[-0.02em] text-primary dark:text-white md:text-5xl xl:text-[3.45rem]"
+            >
               Pagamentos Pix com estrutura de operacao.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 dark:text-slate-300">
@@ -96,7 +99,7 @@ export function Hero() {
         </div>
 
         <div id="demo" className="col-span-12 lg:col-span-7">
-          <div className="animate-hero-spark hero-showcase group relative mx-auto max-w-[860px]">
+          <div className="animate-hero-spark hero-showcase group relative mx-auto max-w-[850px] lg:translate-x-5 xl:translate-x-9">
             <div className="absolute inset-x-8 bottom-8 top-16 rounded-[42px] bg-gradient-to-br from-cyan-200/30 via-indigo-200/20 to-transparent blur-2xl dark:from-cyan-500/10 dark:via-indigo-500/10" aria-hidden="true" />
             <svg
               className="pointer-events-none absolute inset-x-0 top-12 z-0 h-[420px] w-full text-accent/40 transition duration-700 group-hover:text-accent/70 dark:text-accent/30 dark:group-hover:text-accent/60"
@@ -117,7 +120,7 @@ export function Hero() {
               <circle cx="610" cy="184" r="5" fill="currentColor" />
             </svg>
 
-            <div className="relative z-10 grid items-center gap-4 md:grid-cols-[minmax(0,1fr)_170px] xl:grid-cols-[minmax(0,1fr)_185px]">
+            <div className="relative z-10 grid items-center gap-4 md:grid-cols-[minmax(0,1fr)_210px] xl:grid-cols-[minmax(0,1fr)_220px]">
               <div className="hero-showcase-shell relative overflow-hidden rounded-lg border border-white/75 bg-white/82 p-2.5 shadow-panel backdrop-blur transition-all duration-700 group-hover:-translate-y-2 dark:border-slate-700 dark:bg-slate-900/82 md:p-3">
                 <div className="hero-showcase-sheen absolute inset-0" aria-hidden="true" />
                 <div className="absolute inset-x-10 bottom-9 h-20 rounded-full bg-primary/10 blur-2xl transition duration-700 group-hover:bg-accent/20 dark:bg-black/40" aria-hidden="true" />
@@ -157,7 +160,7 @@ export function Hero() {
                           <Icon aria-hidden="true" size={16} />
                         </span>
                         <div className="min-w-0">
-                          <p className="text-xs font-extrabold text-primary dark:text-white">{card.label}</p>
+                          <p className="whitespace-nowrap text-xs font-extrabold text-primary dark:text-white">{card.label}</p>
                           <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">{card.detail}</p>
                         </div>
                       </div>
