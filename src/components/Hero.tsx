@@ -125,6 +125,7 @@ export function Hero() {
 
                 <div className="spark-hero-image-frame relative z-10 mx-auto w-full overflow-hidden rounded-[18px] border border-white/80 shadow-[0_24px_70px_rgba(15,23,42,0.16)] transition-all duration-700 group-hover:scale-[1.025] group-hover:-rotate-1 group-hover:shadow-[0_30px_90px_rgba(6,182,212,0.24)] dark:border-slate-700/80 dark:shadow-[0_24px_80px_rgba(0,0,0,0.32)]">
                   <SparkMascot
+                    key="spark-hero-official"
                     variant="hero"
                     priority
                     sizes="(min-width: 1024px) 470px, 90vw"
