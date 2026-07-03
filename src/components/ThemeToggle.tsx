@@ -1,19 +1,25 @@
 "use client";
 
-import { Laptop, Moon, Sun } from "lucide-react";
+import { Laptop, Moon, Sun, type LucideIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type ThemeMode = "light" | "dark" | "system";
 
-const options: Array<{ mode: ThemeMode; label: string; icon: typeof Sun }> = [
+const options: Array<{ mode: ThemeMode; label: string; icon: LucideIcon }> = [
   { mode: "light", label: "Claro", icon: Sun },
   { mode: "dark", label: "Escuro", icon: Moon },
   { mode: "system", label: "Sistema", icon: Laptop },
 ];
 
+function isThemeMode(value: string | null): value is ThemeMode {
+  return value === "light" || value === "dark" || value === "system";
+}
+
 function applyTheme(mode: ThemeMode) {
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  document.documentElement.classList.toggle("dark", mode === "dark" || (mode === "system" && prefersDark));
+  const useDark = mode === "dark" || (mode === "system" && prefersDark);
+
+  document.documentElement.classList.toggle("dark", useDark);
   document.documentElement.dataset.theme = mode;
 }
 
@@ -21,13 +27,17 @@ export function ThemeToggle() {
   const [mode, setMode] = useState<ThemeMode>("system");
 
   useEffect(() => {
-    const saved = (localStorage.getItem("stickpay-theme") as ThemeMode | null) ?? "system";
-    setMode(saved);
-    applyTheme(saved);
+    const saved = localStorage.getItem("stickpay-theme");
+    const initialMode = isThemeMode(saved) ? saved : "system";
+
+    setMode(initialMode);
+    applyTheme(initialMode);
 
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = () => {
-      if ((localStorage.getItem("stickpay-theme") ?? "system") === "system") {
+      const current = localStorage.getItem("stickpay-theme");
+
+      if (!isThemeMode(current) || current === "system") {
         applyTheme("system");
       }
     };
@@ -44,7 +54,7 @@ export function ThemeToggle() {
 
   return (
     <div
-      className="inline-flex rounded-lg border border-slate-200 bg-white p-1 shadow-sm dark:border-slate-700 dark:bg-slate-900"
+      className="inline-flex h-11 items-center rounded-lg border border-slate-200 bg-white/90 p-1 shadow-sm backdrop-blur dark:border-slate-700 dark:bg-slate-900/90"
       role="group"
       aria-label="Selecionar tema"
     >
@@ -60,13 +70,14 @@ export function ThemeToggle() {
             aria-pressed={active}
             title={`Tema ${option.label}`}
             onClick={() => selectTheme(option.mode)}
-            className={`grid h-9 w-9 place-items-center rounded-md transition duration-300 hover:-translate-y-0.5 ${
+            className={`inline-flex h-9 min-w-9 items-center justify-center gap-2 rounded-md px-2.5 text-xs font-bold transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] ${
               active
-                ? "bg-primary text-white dark:bg-accent dark:text-primary"
+                ? "bg-primary text-white shadow-sm dark:bg-accent dark:text-primary"
                 : "text-slate-600 hover:bg-slate-100 hover:text-primary dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
             }`}
           >
             <Icon aria-hidden="true" size={16} />
+            <span className="hidden lg:inline">{option.label}</span>
           </button>
         );
       })}

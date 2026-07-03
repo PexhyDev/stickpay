@@ -1,90 +1,195 @@
-import Image from "next/image";
-import { ArrowRight, CheckCircle2, PlayCircle, ShieldCheck, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  CircleDollarSign,
+  PlayCircle,
+  QrCode,
+  ShieldCheck,
+  Webhook,
+  Zap,
+} from "lucide-react";
+import { SparkMascot } from "./SparkMascot";
 
-const badges = ["Pix gerado", "Pagamento confirmado", "Webhook enviado", "Transacao conciliada"];
+const statusCards = [
+  { label: "Pix gerado", detail: "QR pronto", icon: QrCode, className: "left-4 top-6 md:left-6 md:top-8" },
+  {
+    label: "Pagamento confirmado",
+    detail: "Status atualizado",
+    icon: CheckCircle2,
+    className: "right-4 top-24 md:right-6 md:top-28",
+  },
+  { label: "Webhook enviado", detail: "Evento entregue", icon: Webhook, className: "left-4 bottom-24 md:left-8 md:bottom-28" },
+  {
+    label: "Transacao conciliada",
+    detail: "Registro pronto",
+    icon: ShieldCheck,
+    className: "right-4 bottom-5 md:right-7 md:bottom-8",
+  },
+];
+
+const trustItems = ["Pix com status", "Webhook incluso", "Custo previsivel"];
 
 export function Hero() {
   return (
-    <section className="overflow-hidden bg-slate-50 py-16 dark:bg-slate-950 md:py-20" aria-labelledby="hero-title">
+    <section
+      className="relative isolate overflow-hidden bg-slate-50 py-14 dark:bg-slate-950 md:py-16"
+      aria-labelledby="hero-title"
+    >
+      <div className="hero-mesh absolute inset-0 -z-20" aria-hidden="true" />
+      <div className="hero-grid absolute inset-0 -z-10 opacity-70 dark:opacity-35" aria-hidden="true" />
+
       <div className="mx-auto grid max-w-7xl grid-cols-12 items-center gap-8 px-6">
-        <div className="col-span-12 animate-pop-in lg:col-span-7">
-          <p className="inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-sm font-bold uppercase tracking-[0.14em] text-accent shadow-sm dark:bg-slate-900">
-            <ShieldCheck aria-hidden="true" size={16} />
-            Plataforma de pagamentos Pix
-          </p>
-          <h1 id="hero-title" className="mt-4 text-4xl font-black leading-tight text-primary dark:text-white md:text-6xl">
-            Pagamentos Pix com estrutura de operacao.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-700 dark:text-slate-300">
-            Gere cobrancas, acompanhe status e mantenha sua operacao financeira sincronizada em uma plataforma
-            feita para negocios digitais que precisam de controle.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <div className="col-span-12 lg:col-span-6">
+          <div className="animate-rise-in">
+            <p className="inline-flex items-center gap-2 rounded-lg border border-cyan-100 bg-white/85 px-3 py-2 text-sm font-bold uppercase tracking-[0.14em] text-accent shadow-sm backdrop-blur dark:border-cyan-900/60 dark:bg-slate-900/80">
+              <ShieldCheck aria-hidden="true" size={16} />
+              Plataforma de pagamentos Pix
+            </p>
+            <h1 id="hero-title" className="mt-4 text-4xl font-black leading-[1.03] text-primary dark:text-white md:text-6xl">
+              Pagamentos Pix com estrutura de operacao.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 dark:text-slate-300">
+              A StickPay ajuda negocios digitais a gerar cobrancas Pix, acompanhar status, automatizar eventos e
+              organizar a operacao com mais clareza.
+            </p>
+          </div>
+
+          <div className="mt-8 flex animate-rise-in flex-col gap-3 sm:flex-row" style={{ animationDelay: "120ms" }}>
             <a
               href="#cadastro"
-              className="animate-soft-glow inline-flex items-center justify-center gap-2 rounded-lg bg-cta px-6 py-3 text-base font-extrabold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:brightness-110 active:translate-y-0"
+              className="animate-soft-glow inline-flex items-center justify-center gap-2 rounded-lg bg-cta px-6 py-3 text-base font-extrabold text-white shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:brightness-110 active:scale-[0.98]"
             >
               Solicitar acesso
               <ArrowRight aria-hidden="true" size={18} />
             </a>
             <a
               href="#como-funciona"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-extrabold text-primary transition duration-300 hover:-translate-y-0.5 hover:border-primary hover:shadow-lg active:translate-y-0 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:border-accent"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white/85 px-6 py-3 text-base font-extrabold text-primary shadow-sm backdrop-blur transition-all duration-300 hover:scale-[1.02] hover:border-cta hover:bg-indigo-50 hover:text-cta active:scale-[0.98] dark:border-slate-700 dark:bg-slate-900/85 dark:text-white dark:hover:border-accent dark:hover:bg-cyan-950/30"
             >
               <PlayCircle aria-hidden="true" size={18} />
               Ver funcionamento
             </a>
           </div>
+
+          <div
+            className="mt-7 grid max-w-2xl animate-rise-in gap-3 sm:grid-cols-[1.2fr_1fr]"
+            style={{ animationDelay: "220ms" }}
+          >
+            <div className="rounded-lg border border-slate-200 bg-white/90 p-4 shadow-[0_20px_40px_rgba(15,23,42,0.06)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/80">
+              <div className="flex items-center gap-3">
+                <span className="grid h-11 w-11 place-items-center rounded-lg bg-primary text-accent dark:bg-slate-950">
+                  <CircleDollarSign aria-hidden="true" size={22} />
+                </span>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Taxa fixa</p>
+                  <p className="text-2xl font-black text-primary dark:text-white">R$ 0,40 por transacao</p>
+                </div>
+              </div>
+            </div>
+            <div className="grid content-center gap-2 rounded-lg border border-slate-200 bg-white/70 p-4 text-sm font-bold text-slate-700 backdrop-blur dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300">
+              {trustItems.map((item) => (
+                <span key={item} className="flex items-center gap-2">
+                  <CheckCircle2 aria-hidden="true" size={16} className="text-green-500" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div id="demo" className="col-span-12 lg:col-span-5">
-          <div className="relative mx-auto max-w-2xl animate-float-panel">
-            <div className="absolute inset-x-8 bottom-4 top-14 rounded-full bg-accent/20 blur-3xl dark:bg-accent/10" aria-hidden="true" />
+        <div id="demo" className="col-span-12 lg:col-span-6">
+          <div className="animate-hero-spark relative mx-auto max-w-[620px]">
+            <div className="absolute inset-x-8 bottom-8 top-16 rounded-[42px] bg-gradient-to-br from-cyan-200/30 via-indigo-200/20 to-transparent blur-2xl dark:from-cyan-500/10 dark:via-indigo-500/10" aria-hidden="true" />
             <svg
-              className="pointer-events-none absolute inset-x-0 top-16 z-0 hidden h-72 w-full text-accent/50 sm:block"
-              viewBox="0 0 700 300"
+              className="pointer-events-none absolute inset-x-0 top-12 z-0 h-[420px] w-full text-accent/45 dark:text-accent/35"
+              viewBox="0 0 680 420"
               aria-hidden="true"
             >
               <path
                 className="animate-flow-dash"
-                d="M55 160 C170 64 280 250 386 145 S560 76 648 155"
+                d="M70 178 C165 70 245 296 338 188 S512 72 610 184"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="3"
-                strokeDasharray="12 14"
+                strokeDasharray="10 13"
                 strokeLinecap="round"
               />
+              <circle cx="70" cy="178" r="5" fill="currentColor" />
+              <circle cx="338" cy="188" r="5" fill="currentColor" />
+              <circle cx="610" cy="184" r="5" fill="currentColor" />
             </svg>
-            <div className="relative z-10 overflow-hidden rounded-lg border border-white/70 bg-white/80 p-3 shadow-panel transition duration-500 hover:-translate-y-2 hover:shadow-2xl dark:border-slate-700 dark:bg-slate-900/80">
-              <Image
-                src="/mascot/spark-hero.png"
-                alt="Spark, mascote da StickPay representando velocidade e seguranca nos pagamentos Pix"
-                width={1440}
-                height={1080}
+
+            <div className="relative z-10 overflow-hidden rounded-lg border border-white/70 bg-white/80 p-3 shadow-panel backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl dark:border-slate-700 dark:bg-slate-900/80">
+              <div className="absolute left-0 top-0 h-px w-full animate-shimmer bg-gradient-to-r from-transparent via-accent/80 to-transparent" aria-hidden="true" />
+              <SparkMascot
+                variant="hero"
                 priority
-                className="h-auto w-full"
+                sizes="(min-width: 1024px) 560px, 100vw"
+                className="relative z-10 h-auto w-full select-none"
               />
-              <div className="absolute left-5 top-5 rounded-lg border border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur dark:border-slate-700 dark:bg-slate-950/90">
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Taxa fixa</p>
-                <p className="mt-1 text-2xl font-black text-primary dark:text-white">R$ 0,40</p>
-                <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">por transacao</p>
+
+              <div className="absolute left-5 top-5 z-20 rounded-lg border border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur dark:border-slate-700 dark:bg-slate-950/90">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Operacao Pix</p>
+                <div className="mt-2 grid grid-cols-[56px_1fr] items-center gap-3">
+                  <div className="grid h-14 w-14 grid-cols-3 gap-1 rounded-md bg-white p-1 shadow-inner dark:bg-slate-900">
+                    {Array.from({ length: 9 }).map((_, index) => (
+                      <span
+                        key={index}
+                        className={`rounded-[2px] ${[0, 2, 4, 6, 8].includes(index) ? "bg-primary dark:bg-white" : "bg-accent/45"}`}
+                      />
+                    ))}
+                  </div>
+                  <div>
+                    <p className="text-2xl font-black text-primary dark:text-white">R$ 0,40</p>
+                    <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">por transacao</p>
+                  </div>
+                </div>
               </div>
-              <div className="absolute bottom-5 left-5 right-5 grid gap-2 sm:grid-cols-2">
-                {badges.map((badge, index) => (
+
+              <div className="hidden md:block">
+                {statusCards.map((card, index) => {
+                  const Icon = card.icon;
+
+                  return (
+                    <div
+                      key={card.label}
+                      className={`animate-status-card absolute z-20 min-w-44 rounded-lg border border-slate-200 bg-white/95 px-3 py-2.5 shadow-lg backdrop-blur dark:border-slate-700 dark:bg-slate-950/90 ${card.className}`}
+                      style={{ animationDelay: `${350 + index * 160}ms` }}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="grid h-8 w-8 place-items-center rounded-md bg-cyan-50 text-accent dark:bg-cyan-950/40">
+                          <Icon aria-hidden="true" size={16} />
+                        </span>
+                        <div>
+                          <p className="text-xs font-extrabold text-primary dark:text-white">{card.label}</p>
+                          <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">{card.detail}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mt-3 grid gap-2 md:hidden">
+              {statusCards.map((card, index) => {
+                const Icon = card.icon;
+
+                return (
                   <span
-                    key={badge}
-                    className="animate-badge-breathe inline-flex items-center gap-2 rounded-lg bg-white/95 px-3 py-2 text-xs font-extrabold text-primary shadow-lg backdrop-blur dark:bg-slate-950/90 dark:text-white"
-                    style={{ animationDelay: `${index * 220}ms` }}
+                    key={card.label}
+                    className="animate-badge-breathe inline-flex items-center gap-2 rounded-lg bg-white/95 px-3 py-2 text-xs font-extrabold text-primary shadow-sm dark:bg-slate-900 dark:text-white"
+                    style={{ animationDelay: `${index * 160}ms` }}
                   >
-                    {index === 0 ? (
-                      <Zap aria-hidden="true" size={14} className="text-accent" />
-                    ) : (
-                      <CheckCircle2 aria-hidden="true" size={14} className="text-green-500" />
-                    )}
-                    {badge}
+                    <Icon aria-hidden="true" size={14} className="text-accent" />
+                    {card.label}
                   </span>
-                ))}
-              </div>
+                );
+              })}
+            </div>
+
+            <div className="absolute -right-3 top-1/2 hidden -translate-y-1/2 rounded-full bg-accent p-3 text-primary shadow-[0_20px_50px_rgba(6,182,212,0.35)] lg:grid" aria-hidden="true">
+              <Zap size={22} />
             </div>
           </div>
         </div>

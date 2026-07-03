@@ -20,6 +20,10 @@ body {
   color: #0b1120;
 }
 
+.dark {
+  color-scheme: dark;
+}
+
 .dark body {
   background: #020617;
   color: #e2e8f0;
@@ -41,6 +45,34 @@ textarea {
 ::selection {
   background: #06b6d4;
   color: #0b1120;
+}
+
+.hero-mesh {
+  background:
+    linear-gradient(115deg, rgba(6, 182, 212, 0.1), transparent 34%),
+    linear-gradient(245deg, rgba(79, 70, 229, 0.09), transparent 38%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.96));
+}
+
+.dark .hero-mesh {
+  background:
+    linear-gradient(115deg, rgba(6, 182, 212, 0.08), transparent 34%),
+    linear-gradient(245deg, rgba(79, 70, 229, 0.1), transparent 38%),
+    linear-gradient(180deg, rgba(2, 6, 23, 0.98), rgba(15, 23, 42, 0.96));
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 76%, transparent);
+}
+
+.dark .hero-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
 }
 
 @keyframes float-panel {
@@ -117,6 +149,48 @@ textarea {
   }
 }
 
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-spark {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes status-card {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
 .animate-float-panel {
   animation: float-panel 7s ease-in-out infinite;
 }
@@ -146,6 +220,22 @@ textarea {
   animation: soft-glow 5s ease-in-out infinite;
 }
 
+.animate-rise-in {
+  animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-hero-spark {
+  animation: hero-spark 850ms cubic-bezier(0.22, 1, 0.36, 1) 160ms both;
+}
+
+.animate-status-card {
+  animation: status-card 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-shimmer {
+  animation: shimmer 3.8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -157,7 +247,11 @@ textarea {
   .animate-pop-in,
   .animate-flow-dash,
   .animate-badge-breathe,
-  .animate-soft-glow {
+  .animate-soft-glow,
+  .animate-rise-in,
+  .animate-hero-spark,
+  .animate-status-card,
+  .animate-shimmer {
     animation: none;
   }
 
