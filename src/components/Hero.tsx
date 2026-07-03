@@ -11,19 +11,17 @@ import {
 import { SparkMascot } from "./SparkMascot";
 
 const statusCards = [
-  { label: "Pix gerado", detail: "QR pronto", icon: QrCode, className: "left-4 top-6 md:left-6 md:top-8" },
+  { label: "Pix gerado", detail: "QR pronto", icon: QrCode },
   {
     label: "Pagamento confirmado",
     detail: "Status atualizado",
     icon: CheckCircle2,
-    className: "right-4 top-24 md:right-6 md:top-28",
   },
-  { label: "Webhook enviado", detail: "Evento entregue", icon: Webhook, className: "left-4 bottom-24 md:left-8 md:bottom-28" },
+  { label: "Webhook enviado", detail: "Evento entregue", icon: Webhook },
   {
     label: "Transacao conciliada",
     detail: "Registro pronto",
     icon: ShieldCheck,
-    className: "right-4 bottom-5 md:right-7 md:bottom-8",
   },
 ];
 
@@ -98,10 +96,10 @@ export function Hero() {
         </div>
 
         <div id="demo" className="col-span-12 lg:col-span-6">
-          <div className="animate-hero-spark relative mx-auto max-w-[620px]">
+          <div className="animate-hero-spark hero-showcase group relative mx-auto max-w-[720px]">
             <div className="absolute inset-x-8 bottom-8 top-16 rounded-[42px] bg-gradient-to-br from-cyan-200/30 via-indigo-200/20 to-transparent blur-2xl dark:from-cyan-500/10 dark:via-indigo-500/10" aria-hidden="true" />
             <svg
-              className="pointer-events-none absolute inset-x-0 top-12 z-0 h-[420px] w-full text-accent/45 dark:text-accent/35"
+              className="pointer-events-none absolute inset-x-0 top-12 z-0 h-[420px] w-full text-accent/40 transition duration-700 group-hover:text-accent/70 dark:text-accent/30 dark:group-hover:text-accent/60"
               viewBox="0 0 680 420"
               aria-hidden="true"
             >
@@ -119,41 +117,44 @@ export function Hero() {
               <circle cx="610" cy="184" r="5" fill="currentColor" />
             </svg>
 
-            <div className="relative z-10 overflow-hidden rounded-lg border border-white/70 bg-white/80 p-3 shadow-panel backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl dark:border-slate-700 dark:bg-slate-900/80">
-              <div className="absolute left-0 top-0 h-px w-full animate-shimmer bg-gradient-to-r from-transparent via-accent/80 to-transparent" aria-hidden="true" />
-              <SparkMascot
-                variant="hero"
-                priority
-                sizes="(min-width: 1024px) 560px, 100vw"
-                className="relative z-10 h-auto w-full select-none"
-              />
+            <div className="relative z-10 grid items-center gap-4 md:grid-cols-[minmax(0,1fr)_220px]">
+              <div className="hero-showcase-shell relative overflow-hidden rounded-lg border border-white/75 bg-white/82 p-4 shadow-panel backdrop-blur transition-all duration-700 group-hover:-translate-y-2 dark:border-slate-700 dark:bg-slate-900/82">
+                <div className="hero-showcase-sheen absolute inset-0" aria-hidden="true" />
+                <div className="absolute inset-x-10 bottom-9 h-20 rounded-full bg-primary/10 blur-2xl transition duration-700 group-hover:bg-accent/20 dark:bg-black/40" aria-hidden="true" />
+                <div className="absolute right-8 top-8 h-28 w-28 rounded-full border border-accent/20 transition duration-700 group-hover:scale-125 group-hover:border-accent/50" aria-hidden="true" />
 
-              <div className="absolute left-5 top-5 z-20 rounded-lg border border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur dark:border-slate-700 dark:bg-slate-950/90">
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Operacao Pix</p>
-                <div className="mt-2 grid grid-cols-[56px_1fr] items-center gap-3">
-                  <div className="grid h-14 w-14 grid-cols-3 gap-1 rounded-md bg-white p-1 shadow-inner dark:bg-slate-900">
-                    {Array.from({ length: 9 }).map((_, index) => (
-                      <span
-                        key={index}
-                        className={`rounded-[2px] ${[0, 2, 4, 6, 8].includes(index) ? "bg-primary dark:bg-white" : "bg-accent/45"}`}
-                      />
-                    ))}
-                  </div>
-                  <div>
-                    <p className="text-2xl font-black text-primary dark:text-white">R$ 0,40</p>
-                    <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">por transacao</p>
-                  </div>
+                <div className="relative z-10 mx-auto w-[82%] transition-all duration-700 group-hover:scale-[1.035] group-hover:-rotate-1 md:w-[84%]">
+                  <SparkMascot
+                    variant="light"
+                    priority
+                    sizes="(min-width: 1024px) 470px, 90vw"
+                    className="block h-auto w-full select-none drop-shadow-[0_28px_45px_rgba(15,23,42,0.16)] dark:hidden"
+                  />
+                  <SparkMascot
+                    variant="dark"
+                    priority
+                    sizes="(min-width: 1024px) 470px, 90vw"
+                    className="hidden h-auto w-full select-none drop-shadow-[0_0_38px_rgba(6,182,212,0.18)] dark:block"
+                  />
                 </div>
               </div>
 
-              <div className="hidden md:block">
+              <div className="grid gap-3">
+                <div className="hero-side-card rounded-lg border border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur transition-all duration-700 group-hover:-translate-y-1 group-hover:border-accent/60 group-hover:shadow-[0_22px_60px_rgba(6,182,212,0.18)] dark:border-slate-700 dark:bg-slate-950/90">
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Taxa fixa</p>
+                  <div className="mt-2">
+                    <p className="text-2xl font-black text-primary dark:text-white">R$ 0,40</p>
+                    <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">por transacao Pix</p>
+                  </div>
+                </div>
+
                 {statusCards.map((card, index) => {
                   const Icon = card.icon;
 
                   return (
                     <div
                       key={card.label}
-                      className={`animate-status-card absolute z-20 min-w-44 rounded-lg border border-slate-200 bg-white/95 px-3 py-2.5 shadow-lg backdrop-blur dark:border-slate-700 dark:bg-slate-950/90 ${card.className}`}
+                      className="hero-side-card animate-status-card rounded-lg border border-slate-200 bg-white/95 px-3 py-2.5 shadow-lg backdrop-blur transition-all duration-700 group-hover:border-accent/60 group-hover:bg-white group-hover:shadow-[0_22px_60px_rgba(6,182,212,0.16)] dark:border-slate-700 dark:bg-slate-950/90 dark:group-hover:bg-slate-950"
                       style={{ animationDelay: `${350 + index * 160}ms` }}
                     >
                       <div className="flex items-center gap-2">
@@ -169,23 +170,6 @@ export function Hero() {
                   );
                 })}
               </div>
-            </div>
-
-            <div className="mt-3 grid gap-2 md:hidden">
-              {statusCards.map((card, index) => {
-                const Icon = card.icon;
-
-                return (
-                  <span
-                    key={card.label}
-                    className="animate-badge-breathe inline-flex items-center gap-2 rounded-lg bg-white/95 px-3 py-2 text-xs font-extrabold text-primary shadow-sm dark:bg-slate-900 dark:text-white"
-                    style={{ animationDelay: `${index * 160}ms` }}
-                  >
-                    <Icon aria-hidden="true" size={14} className="text-accent" />
-                    {card.label}
-                  </span>
-                );
-              })}
             </div>
 
             <div className="absolute -right-3 top-1/2 hidden -translate-y-1/2 rounded-full bg-accent p-3 text-primary shadow-[0_20px_50px_rgba(6,182,212,0.35)] lg:grid" aria-hidden="true">
