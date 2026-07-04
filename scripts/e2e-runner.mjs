@@ -1,7 +1,10 @@
 import { spawn } from "node:child_process";
+import net from "node:net";
 
 const isWindows = process.platform === "win32";
-const serverUrl = "http://127.0.0.1:3000";
+const host = "127.0.0.1";
+const port = process.env.E2E_PORT ?? "3000";
+const serverUrl = process.env.PLAYWRIGHT_BASE_URL ?? `http://${host}:${port}`;
 
 function run(command, args, options = {}) {
   return spawn(command, args, {
@@ -12,9 +15,13 @@ function run(command, args, options = {}) {
   });
 }
 
-async function waitForServer(timeoutMs = 120_000) {
+async function waitForServer(server, timeoutMs = 120_000) {
   const startedAt = Date.now();
   while (Date.now() - startedAt < timeoutMs) {
+    if (server.exitCode !== null) {
+      throw new Error(`Dev server exited before ${serverUrl} became ready.`);
+    }
+
     try {
       const response = await fetch(serverUrl);
       if (response.ok) return;
@@ -23,6 +30,21 @@ async function waitForServer(timeoutMs = 120_000) {
     }
   }
   throw new Error(`Timed out waiting for ${serverUrl}`);
+}
+
+async function assertPortAvailable() {
+  const isBusy = await new Promise((resolve) => {
+    const socket = net.connect(Number(port), host);
+    socket.once("connect", () => {
+      socket.destroy();
+      resolve(true);
+    });
+    socket.once("error", () => resolve(false));
+  });
+
+  if (isBusy) {
+    throw new Error(`Port ${port} is already in use. Stop the existing process before running e2e.`);
+  }
 }
 
 async function stopServer(server) {
@@ -45,12 +67,26 @@ async function stopServer(server) {
   await stopped;
 }
 
-const server = run("node", ["node_modules/next/dist/bin/next", "dev", "--hostname", "127.0.0.1"]);
+let server;
 
 try {
-  await waitForServer();
+  await assertPortAvailable();
 
-  const tests = run("node", ["node_modules/@playwright/test/cli.js", "test"]);
+  server = run("node", ["node_modules/next/dist/bin/next", "dev", "--hostname", host, "--port", port], {
+    env: {
+      ...process.env,
+      PLAYWRIGHT_BASE_URL: serverUrl,
+    },
+  });
+
+  await waitForServer(server);
+
+  const tests = run("node", ["node_modules/@playwright/test/cli.js", "test"], {
+    env: {
+      ...process.env,
+      PLAYWRIGHT_BASE_URL: serverUrl,
+    },
+  });
   const exitCode = await new Promise((resolve) => {
     tests.on("exit", (code) => resolve(code ?? 1));
   });
@@ -59,6 +95,8 @@ try {
   process.exit(exitCode);
 } catch (error) {
   console.error(error);
-  await stopServer(server);
+  if (server) {
+    await stopServer(server);
+  }
   process.exit(1);
 }

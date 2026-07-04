@@ -10,6 +10,7 @@ StickPay é uma plataforma de pagamentos Pix para operações digitais, com gera
 - Vitest + Testing Library
 - Playwright
 - GitHub Actions
+- Backend separado em `PexhyDev/stickpay2`
 
 ## Comandos
 
@@ -24,23 +25,24 @@ npm run build
 
 No Windows PowerShell com policy restritiva, use `npm.cmd run dev`.
 
+Use o app sempre em `http://127.0.0.1:3000`. Para fluxos que chamam `/api`, rode tambem o backend `stickpay2` em `http://127.0.0.1:3001`; o navegador continua usando apenas o frontend em `3000`, e o Next faz proxy de `/api/:path*` para `API_BASE_URL`.
+
+As portas de desenvolvimento sao fixas. Se `3000` ja estiver ocupada, feche o processo existente em vez de deixar o Next subir em outra porta.
+
 ## Variáveis de ambiente
 
 Copie `.env.example` para `.env.local`.
 
 ```bash
-STICKPAY_API_KEY=sk_test_stickpay_mock
-PAYMENT_PROVIDER_MODE=mock
-PAYMENT_PROVIDER_BASE_URL=
-PAYMENT_PROVIDER_CLIENT_ID=seu_client_id
-PAYMENT_PROVIDER_CLIENT_SECRET=seu_client_secret
-PAYMENT_PROVIDER_WEBHOOK_SECRET=whsec_provider_mock
 NEXT_PUBLIC_APP_URL=http://localhost:3000
+API_BASE_URL=http://127.0.0.1:3001
 ```
 
-Use `PAYMENT_PROVIDER_MODE=mock` para desenvolvimento local. Use `PAYMENT_PROVIDER_MODE=live` somente no backend com credenciais reais configuradas em ambiente seguro.
+As credenciais operacionais e variaveis `PAYMENT_PROVIDER_*` ficam somente no backend.
 
-## Endpoints StickPay mock
+## Backend StickPay
+
+As rotas de API foram extraidas para o repositorio `PexhyDev/stickpay2`. No frontend, `/api/...` continua disponivel por rewrite para manter formularios, logout e testes apontando para o mesmo dominio.
 
 ### POST `/api/pix/charges`
 
@@ -193,6 +195,6 @@ Componentes preparados para o produto logado:
 ## Deploy Vercel
 
 1. Conecte o repositório no Vercel.
-2. Configure as variáveis `STICKPAY_API_KEY`, `PAYMENT_PROVIDER_*` e `NEXT_PUBLIC_APP_URL`.
+2. Configure as variáveis `NEXT_PUBLIC_APP_URL` e `API_BASE_URL`.
 3. Use `npm run build` como build command.
 4. Publique a branch `main` após aprovação do PR.
