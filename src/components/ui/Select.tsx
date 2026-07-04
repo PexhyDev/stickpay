@@ -7,10 +7,10 @@ type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
 
 export function Select({ label, options, className = "", ...props }: SelectProps) {
   return (
-    <label className="block text-sm font-semibold text-primary">
+    <label className="block text-sm font-semibold text-primary dark:text-slate-200">
       {label}
       <select
-        className={`mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-base text-primary transition focus:border-accent ${className}`}
+        className={`mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-base text-primary transition focus:border-accent dark:border-slate-700 dark:bg-slate-950 dark:text-white ${className}`}
         {...props}
       >
         {options.map((option) => (

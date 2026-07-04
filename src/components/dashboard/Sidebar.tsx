@@ -1,66 +1,166 @@
 "use client";
 
 import {
+  BadgePercent,
   BellRing,
+  BookOpen,
+  Boxes,
   Code2,
   CreditCard,
-  Headphones,
+  FileWarning,
+  Gift,
   Home,
   KeyRound,
+  Layers3,
   ReceiptText,
+  Send,
   Settings,
+  ShieldCheck,
+  ShoppingCart,
   Users,
+  WalletCards,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const navItems = [
-  { href: "/dashboard", label: "Visão geral", icon: Home },
-  { href: "/dashboard/transacoes", label: "Transações", icon: ReceiptText },
-  { href: "/dashboard/cobrancas", label: "Cobranças", icon: CreditCard },
-  { href: "/dashboard/clientes", label: "Clientes", icon: Users },
-  { href: "/dashboard/api", label: "API", icon: Code2 },
-  { href: "/dashboard/webhooks", label: "Webhooks", icon: BellRing },
-  { href: "/dashboard/configuracoes", label: "Configurações", icon: Settings },
-  { href: "/dashboard/suporte", label: "Suporte", icon: Headphones },
+type SidebarProps = {
+  isOpen?: boolean;
+  onClose?: () => void;
+};
+
+const navGroups = [
+  {
+    label: "Gerenciamento",
+    items: [
+      { href: "/dashboard", label: "Dashboard", icon: Home },
+      { href: "/dashboard/cobrancas", label: "Receber via Pix", icon: CreditCard },
+      { href: "/dashboard/transacoes", label: "Transferencias", icon: Send },
+      { href: "/dashboard/transacoes", label: "Saques", icon: WalletCards },
+      { href: "/dashboard/transacoes", label: "Extrato", icon: ReceiptText },
+      { href: "/dashboard/clientes", label: "Clientes", icon: Users },
+    ],
+  },
+  {
+    label: "Checkout",
+    items: [
+      { href: "/dashboard/cobrancas", label: "Checkout", icon: ShoppingCart },
+      { href: "/dashboard/cobrancas", label: "Produtos", icon: Boxes },
+      { href: "/dashboard/cobrancas", label: "Cupons", icon: Gift },
+      { href: "/dashboard/configuracoes", label: "Taxas", icon: BadgePercent },
+    ],
+  },
+  {
+    label: "Desenvolvedores",
+    items: [
+      { href: "/dashboard/webhooks", label: "Webhooks", icon: BellRing },
+      { href: "/dashboard/api", label: "API", icon: Code2 },
+      { href: "/dashboard/api", label: "Credenciais", icon: KeyRound },
+      { href: "/dashboard/api", label: "Documentacao", icon: BookOpen },
+    ],
+  },
+  {
+    label: "Conta",
+    items: [
+      { href: "/dashboard/suporte", label: "Infracoes / MED", icon: FileWarning },
+      { href: "/dashboard/configuracoes", label: "Configuracoes", icon: Settings },
+    ],
+  },
 ];
 
-export function Sidebar() {
+const activeLabelsByPath: Record<string, string> = {
+  "/dashboard": "Dashboard",
+  "/dashboard/cobrancas": "Receber via Pix",
+  "/dashboard/transacoes": "Transferencias",
+  "/dashboard/clientes": "Clientes",
+  "/dashboard/webhooks": "Webhooks",
+  "/dashboard/api": "API",
+  "/dashboard/suporte": "Infracoes / MED",
+  "/dashboard/configuracoes": "Configuracoes",
+};
+
+export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className="border-b border-slate-200 bg-white lg:fixed lg:inset-y-0 lg:left-0 lg:w-72 lg:border-b-0 lg:border-r">
-      <div className="flex h-full flex-col px-5 py-5">
-        <Link href="/" className="inline-flex items-center" aria-label="Voltar para landing StickPay">
-          <img src="/assets/stickpay-logo.svg" alt="StickPay" className="h-12 w-auto" />
-        </Link>
-        <nav className="mt-6 grid gap-1" aria-label="Navegação do painel">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = pathname === item.href;
+    <>
+      <div
+        className={`fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm transition lg:hidden ${
+          isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        aria-hidden="true"
+        onClick={onClose}
+      />
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold transition ${
-                  isActive ? "bg-primary text-white" : "text-slate-600 hover:bg-slate-100 hover:text-primary"
-                }`}
-              >
-                <Icon aria-hidden="true" size={18} />
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-        <div className="mt-auto hidden rounded-lg bg-slate-50 p-4 lg:block">
-          <div className="flex items-center gap-3 text-sm font-bold text-primary">
-            <KeyRound aria-hidden="true" size={18} />
-            Ambiente de teste
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-[min(86vw,18rem)] border-r border-slate-800 bg-slate-950/96 shadow-[18px_0_70px_rgba(2,6,23,0.45)] transition-transform duration-300 lg:translate-x-0 ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex h-full flex-col px-5 py-5">
+          <div className="flex items-center justify-between gap-3">
+            <Link href="/" className="inline-flex items-center gap-3" aria-label="Voltar para landing Mistic Pay" onClick={onClose}>
+              <img src="/assets/stickpay-icon.svg" alt="" className="h-10 w-10" />
+              <span>
+                <span className="block text-lg font-black leading-5 text-white">Mistic Pay</span>
+                <span className="block text-xs font-semibold text-slate-400">Area do cliente</span>
+              </span>
+            </Link>
+            <button
+              type="button"
+              className="grid h-10 w-10 place-items-center rounded-lg border border-slate-800 text-slate-300 lg:hidden"
+              aria-label="Fechar menu"
+              onClick={onClose}
+            >
+              <X aria-hidden="true" size={18} />
+            </button>
           </div>
-          <p className="mt-2 text-xs leading-5 text-slate-600">Sessão mock para preparar autenticação, permissões e rotas privadas.</p>
+
+          <nav className="mt-6 grid gap-6 overflow-y-auto pr-1" aria-label="Navegacao do painel">
+            {navGroups.map((group) => (
+              <div key={group.label}>
+                <p className="px-3 text-[11px] font-extrabold uppercase tracking-[0.16em] text-slate-500">{group.label}</p>
+                <div className="mt-2 grid gap-1">
+                  {group.items.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = activeLabelsByPath[pathname] === item.label;
+
+                    return (
+                      <Link
+                        key={`${group.label}-${item.label}`}
+                        href={item.href}
+                        onClick={onClose}
+                        className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold transition ${
+                          isActive
+                            ? "bg-gradient-to-r from-indigo-500/20 to-cyan-400/10 text-white ring-1 ring-cyan-400/20"
+                            : "text-slate-400 hover:bg-slate-900 hover:text-white"
+                        }`}
+                      >
+                        <Icon aria-hidden="true" size={18} className={isActive ? "text-cyan-300" : ""} />
+                        {item.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </nav>
+
+          <div className="mt-6 rounded-lg border border-cyan-400/15 bg-cyan-400/10 p-4">
+            <div className="flex items-center gap-3 text-sm font-extrabold text-white">
+              <Layers3 aria-hidden="true" size={18} className="text-cyan-300" />
+              Ambiente cliente
+            </div>
+            <p className="mt-2 text-xs leading-5 text-slate-400">
+              Operacao Pix, checkout, API e movimentacoes em uma area focada no uso da gateway.
+            </p>
+            <div className="mt-3 flex items-center gap-2 text-xs font-bold text-emerald-300">
+              <ShieldCheck aria-hidden="true" size={14} />
+              Jornada segura para clientes
+            </div>
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
+    </>
   );
 }

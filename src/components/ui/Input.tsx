@@ -7,13 +7,13 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 export function Input({ label, helperText, className = "", ...props }: InputProps) {
   return (
-    <label className="block text-sm font-semibold text-primary">
+    <label className="block text-sm font-semibold text-primary dark:text-slate-200">
       {label}
       <input
-        className={`mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-base text-primary transition placeholder:text-slate-400 focus:border-accent ${className}`}
+        className={`mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-base text-primary transition placeholder:text-slate-400 focus:border-accent dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-500 ${className}`}
         {...props}
       />
-      {helperText && <span className="mt-2 block text-xs font-normal leading-5 text-slate-500">{helperText}</span>}
+      {helperText && <span className="mt-2 block text-xs font-normal leading-5 text-slate-500 dark:text-slate-400">{helperText}</span>}
     </label>
   );
 }

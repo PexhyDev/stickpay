@@ -1,27 +1,49 @@
-import { Bell, LogOut, Plus } from "lucide-react";
+import { Bell, LogOut, Menu, Moon, Plus, WalletCards } from "lucide-react";
 import { Button } from "@/src/components/ui";
 
-export function Header() {
+type HeaderProps = {
+  onOpenSidebar?: () => void;
+};
+
+export function Header({ onOpenSidebar }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200 bg-slate-50/95 px-6 py-4 backdrop-blur lg:ml-72">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Área logada</p>
-          <h1 className="mt-1 text-2xl font-black text-primary">Operação StickPay</h1>
+    <header className="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/82 px-4 py-4 backdrop-blur-xl sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-[1640px] items-center justify-between gap-4">
+        <div className="flex min-w-0 items-center gap-3">
+          <button
+            type="button"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-slate-800 text-slate-300 transition hover:border-cyan-400 hover:text-white lg:hidden"
+            aria-label="Abrir menu"
+            onClick={onOpenSidebar}
+          >
+            <Menu aria-hidden="true" size={19} />
+          </button>
+          <div className="min-w-0">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-cyan-300">Area do cliente</p>
+            <h1 className="mt-1 truncate text-xl font-black text-white sm:text-2xl">Operacao Mistic Pay</h1>
+          </div>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
-          <Button variant="secondary">
-            <Bell aria-hidden="true" size={16} />
-            Alertas
+
+        <div className="flex items-center gap-2">
+          <div className="hidden items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/70 px-3 py-2 text-xs font-bold text-slate-300 md:flex">
+            <WalletCards aria-hidden="true" size={15} className="text-cyan-300" />
+            R$ 0,00 / R$ 1K
+          </div>
+          <div className="hidden items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/70 px-3 py-2 text-xs font-bold text-slate-300 sm:flex">
+            <Moon aria-hidden="true" size={15} className="text-cyan-300" />
+            Escuro
+          </div>
+          <Button variant="ghost" className="h-10 w-10 px-0" aria-label="Alertas">
+            <Bell aria-hidden="true" size={17} />
           </Button>
-          <Button>
+          <Button className="hidden sm:inline-flex">
             <Plus aria-hidden="true" size={16} />
-            Criar cobrança Pix
+            Receber Pix
           </Button>
           <form action="/api/auth/logout" method="post">
-            <Button variant="ghost" type="submit">
+            <Button variant="ghost" type="submit" className="h-10 w-10 px-0 sm:w-auto sm:px-4" aria-label="Sair">
               <LogOut aria-hidden="true" size={16} />
-              Sair
+              <span className="hidden sm:inline">Sair</span>
             </Button>
           </form>
         </div>
