@@ -7,12 +7,12 @@ type HeaderProps = {
 
 export function Header({ onOpenSidebar }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/82 px-4 py-4 backdrop-blur-xl sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/92 px-4 py-3.5 backdrop-blur-md sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-[1640px] items-center justify-between gap-4">
         <div className="flex min-w-0 items-center gap-3">
           <button
             type="button"
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-slate-800 text-slate-300 transition hover:border-cyan-400 hover:text-white lg:hidden"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-slate-800 text-slate-300 transition duration-300 hover:border-cyan-400/60 hover:bg-slate-900 hover:text-white lg:hidden"
             aria-label="Abrir menu"
             onClick={onOpenSidebar}
           >
@@ -20,23 +20,23 @@ export function Header({ onOpenSidebar }: HeaderProps) {
           </button>
           <div className="min-w-0">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-cyan-300">Area do cliente</p>
-            <h1 className="mt-1 truncate text-xl font-black text-white sm:text-2xl">Operacao Mistic Pay</h1>
+            <h1 className="mt-1 truncate text-xl font-black text-white sm:text-2xl">Operacao StickPay</h1>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <div className="hidden items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/70 px-3 py-2 text-xs font-bold text-slate-300 md:flex">
+        <div className="flex shrink-0 items-center gap-2">
+          <div className="hidden items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/72 px-3 py-2 text-xs font-bold text-slate-300 md:flex">
             <WalletCards aria-hidden="true" size={15} className="text-cyan-300" />
             R$ 0,00 / R$ 1K
           </div>
-          <div className="hidden items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/70 px-3 py-2 text-xs font-bold text-slate-300 sm:flex">
+          <div className="hidden items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/72 px-3 py-2 text-xs font-bold text-slate-300 sm:flex">
             <Moon aria-hidden="true" size={15} className="text-cyan-300" />
             Escuro
           </div>
           <Button variant="ghost" className="h-10 w-10 px-0" aria-label="Alertas">
             <Bell aria-hidden="true" size={17} />
           </Button>
-          <Button className="hidden sm:inline-flex">
+          <Button className="hidden h-10 shadow-[0_14px_28px_rgba(79,70,229,0.22)] sm:inline-flex">
             <Plus aria-hidden="true" size={16} />
             Receber Pix
           </Button>

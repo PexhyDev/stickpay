@@ -38,7 +38,7 @@ export type DashboardAction = {
 
 export const accountOverview = {
   userName: "Pedro",
-  platformName: "Mistic Pay",
+  platformName: "StickPay",
   status: "Conta ativa",
   statusDescription: "Sua conta esta liberada para receber pagamentos Pix.",
   currentLimit: "R$ 50 mil/dia",
@@ -95,7 +95,7 @@ export const dashboardMetrics: DashboardMetric[] = [
     id: "conversion",
     label: "Conversao Pix",
     value: "0,0%",
-    helper: "0/0 aprovados",
+    helper: "Pagamentos aprovados no periodo",
     change: "Sem dados suficientes",
     icon: "percent",
     tone: "amber",
@@ -113,7 +113,7 @@ export const dashboardMetrics: DashboardMetric[] = [
     id: "fee-savings",
     label: "Economia em taxas",
     value: "R$ 0,00",
-    helper: "Descontos e beneficios aplicados",
+    helper: "Beneficios aplicados",
     change: "Beneficios aparecem aqui",
     icon: "sparkles",
     tone: "indigo",

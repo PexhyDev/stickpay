@@ -19,7 +19,7 @@ export default function ApiPage() {
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Identificador mascarado para nao expor segredo em tela.</p>
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <Badge tone="green">Ativa</Badge>
-            <CopyButton value="mp_test_demo" label="Copiar ID" />
+            <CopyButton value="sp_test_demo" label="Copiar ID" />
           </div>
         </Card>
         <Card className="p-5">
@@ -36,7 +36,7 @@ export default function ApiPage() {
 
       <Table headers={["Chave", "Ambiente", "Status", "Ultimo uso"]}>
         <tr>
-          <td className="px-4 py-4 text-sm font-bold text-primary dark:text-white">mp_test_demo</td>
+          <td className="px-4 py-4 text-sm font-bold text-primary dark:text-white">sp_test_demo</td>
           <td className="px-4 py-4 text-sm text-slate-600 dark:text-slate-400">Sandbox</td>
           <td className="px-4 py-4">
             <Badge tone="green">Ativa</Badge>

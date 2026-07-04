@@ -93,22 +93,22 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       />
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-[min(86vw,18rem)] border-r border-slate-800 bg-slate-950/96 shadow-[18px_0_70px_rgba(2,6,23,0.45)] transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-[min(86vw,18rem)] border-r border-slate-800 bg-slate-950/98 shadow-[18px_0_56px_rgba(2,6,23,0.38)] transition-transform duration-300 lg:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex h-full flex-col px-5 py-5">
+        <div className="flex h-full min-h-0 flex-col px-5 py-5">
           <div className="flex items-center justify-between gap-3">
-            <Link href="/" className="inline-flex items-center gap-3" aria-label="Voltar para landing Mistic Pay" onClick={onClose}>
+            <Link href="/" className="inline-flex items-center gap-3" aria-label="Voltar para landing StickPay" onClick={onClose}>
               <img src="/assets/stickpay-icon.svg" alt="" className="h-10 w-10" />
               <span>
-                <span className="block text-lg font-black leading-5 text-white">Mistic Pay</span>
+                <span className="block text-lg font-black leading-5 text-white">StickPay</span>
                 <span className="block text-xs font-semibold text-slate-400">Area do cliente</span>
               </span>
             </Link>
             <button
               type="button"
-              className="grid h-10 w-10 place-items-center rounded-lg border border-slate-800 text-slate-300 lg:hidden"
+              className="grid h-10 w-10 place-items-center rounded-lg border border-slate-800 text-slate-300 transition duration-300 hover:border-cyan-400/60 hover:bg-slate-900 hover:text-white lg:hidden"
               aria-label="Fechar menu"
               onClick={onClose}
             >
@@ -116,7 +116,10 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             </button>
           </div>
 
-          <nav className="mt-6 grid gap-6 overflow-y-auto pr-1" aria-label="Navegacao do painel">
+          <nav
+            className="mt-6 grid min-h-0 flex-1 gap-5 overflow-y-auto pr-1 [scrollbar-color:#334155_transparent] [scrollbar-width:thin]"
+            aria-label="Navegacao do painel"
+          >
             {navGroups.map((group) => (
               <div key={group.label}>
                 <p className="px-3 text-[11px] font-extrabold uppercase tracking-[0.16em] text-slate-500">{group.label}</p>
@@ -130,14 +133,14 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                         key={`${group.label}-${item.label}`}
                         href={item.href}
                         onClick={onClose}
-                        className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold transition ${
+                        className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold transition duration-300 ${
                           isActive
-                            ? "bg-gradient-to-r from-indigo-500/20 to-cyan-400/10 text-white ring-1 ring-cyan-400/20"
-                            : "text-slate-400 hover:bg-slate-900 hover:text-white"
+                            ? "bg-gradient-to-r from-indigo-500/20 to-cyan-400/10 text-white ring-1 ring-cyan-400/25"
+                            : "text-slate-400 hover:bg-slate-900/90 hover:text-white"
                         }`}
                       >
-                        <Icon aria-hidden="true" size={18} className={isActive ? "text-cyan-300" : ""} />
-                        {item.label}
+                        <Icon aria-hidden="true" size={18} className={`shrink-0 ${isActive ? "text-cyan-300" : ""}`} />
+                        <span className="min-w-0 truncate">{item.label}</span>
                       </Link>
                     );
                   })}
@@ -146,7 +149,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             ))}
           </nav>
 
-          <div className="mt-6 rounded-lg border border-cyan-400/15 bg-cyan-400/10 p-4">
+          <div className="mt-5 rounded-lg border border-cyan-400/15 bg-cyan-400/10 p-4 shadow-[0_14px_32px_rgba(6,182,212,0.06)]">
             <div className="flex items-center gap-3 text-sm font-extrabold text-white">
               <Layers3 aria-hidden="true" size={18} className="text-cyan-300" />
               Ambiente cliente

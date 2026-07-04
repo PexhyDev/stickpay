@@ -14,7 +14,7 @@ export default function SettingsPage() {
       <Card className="p-6">
         <form className="grid gap-5" aria-label="Configuracoes da conta">
           <div className="grid gap-4 md:grid-cols-2">
-            <Input label="Nome da empresa" name="company" placeholder="Mistic Pay Demo" />
+            <Input label="Nome da empresa" name="company" placeholder="StickPay Demo" />
             <Select
               label="Perfil de operacao"
               name="profile"

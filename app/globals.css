@@ -155,6 +155,40 @@ textarea {
   opacity: 0.62;
 }
 
+.spark-spotlight::before {
+  position: absolute;
+  inset: 1px;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+  border-radius: 7px;
+  background:
+    linear-gradient(110deg, transparent 18%, rgba(255, 255, 255, 0.14), transparent 42%),
+    radial-gradient(circle at 78% 18%, rgba(6, 182, 212, 0.2), transparent 24%);
+  opacity: 0.58;
+}
+
+.spark-spotlight::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: "";
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 -28px 52px rgba(2, 6, 23, 0.2);
+}
+
+.dashboard-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: 720px;
+}
+
+.dashboard-soft-cut {
+  mask-image: linear-gradient(to bottom, black calc(100% - 42px), transparent 100%);
+}
+
 @keyframes float-panel {
   0%,
   100% {

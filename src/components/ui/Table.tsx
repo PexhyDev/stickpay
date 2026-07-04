@@ -7,7 +7,7 @@ type TableProps = {
 
 export function Table({ headers, children }: TableProps) {
   return (
-    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900/70">
+    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900/66 dark:shadow-[0_18px_46px_rgba(2,6,23,0.16)]">
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800">
           <thead className="bg-slate-50 dark:bg-slate-950/55">

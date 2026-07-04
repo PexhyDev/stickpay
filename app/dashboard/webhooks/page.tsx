@@ -12,7 +12,7 @@ export default function WebhooksPage() {
         </p>
         <Card className="mt-6 p-6">
           <form className="grid gap-5" aria-label="Configurar webhook">
-            <Input label="URL do endpoint" name="webhookUrl" placeholder="https://suaempresa.com/webhooks/mistic-pay" />
+            <Input label="URL do endpoint" name="webhookUrl" placeholder="https://suaempresa.com/webhooks/stickpay" />
             <div className="flex flex-wrap gap-2">
               <Badge tone="cyan">pix.charge.created</Badge>
               <Badge tone="green">pix.charge.paid</Badge>
