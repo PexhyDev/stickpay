@@ -19,7 +19,7 @@ const statusCopy: Record<DashboardTransactionStatus | LegacyTransactionRowProps[
   pending: "Aguardando",
   blocked: "Retido",
   refunded: "Devolvido",
-  review: "Analise",
+  review: "Análise",
   canceled: "Cancelado",
   paid: "Confirmado",
   failed: "Recusado",

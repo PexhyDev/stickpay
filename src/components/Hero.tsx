@@ -25,7 +25,7 @@ const statusCards = [
   },
 ];
 
-const trustItems = ["Pix com status", "Webhook incluso", "Custo previsivel"];
+const trustItems = ["Pix com status", "Webhook incluso", "Custo previsível"];
 
 export function Hero() {
   return (
@@ -47,11 +47,11 @@ export function Hero() {
               id="hero-title"
               className="mt-4 max-w-[620px] text-3xl font-black leading-[1.06] tracking-[-0.02em] text-primary dark:text-white md:text-4xl xl:text-5xl"
             >
-              Pagamento via Pix com a menor taxa possivel
+              Pagamento via Pix com a menor taxa possível
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 dark:text-slate-300">
-              A StickPay ajuda negocios digitais a gerar cobrancas Pix, acompanhar status, automatizar eventos e
-              organizar a operacao com mais clareza.
+              A StickPay ajuda negócios digitais a gerar cobranças Pix, acompanhar status, automatizar eventos e
+              organizar a operação com mais clareza.
             </p>
           </div>
 
@@ -83,7 +83,7 @@ export function Hero() {
                 </span>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Taxa fixa</p>
-                  <p className="text-2xl font-black text-primary dark:text-white">R$ 0,40 por transacao</p>
+                  <p className="text-2xl font-black text-primary dark:text-white">R$ 0,40 por transação</p>
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@ export function Hero() {
                   <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Taxa fixa</p>
                   <div className="mt-2">
                     <p className="text-2xl font-black text-primary dark:text-white">R$ 0,40</p>
-                    <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">por transacao Pix</p>
+                    <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">por transação Pix</p>
                   </div>
                 </div>
 

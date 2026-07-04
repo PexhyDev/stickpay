@@ -20,6 +20,32 @@ body {
   color: #0b1120;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(51, 65, 85, 0.9) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: rgba(51, 65, 85, 0.78);
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.58);
+  background-clip: content-box;
+}
+
 .dark {
   color-scheme: dark;
 }
@@ -168,6 +194,13 @@ textarea {
   opacity: 0.58;
 }
 
+.spark-spotlight-hero::before {
+  background:
+    linear-gradient(112deg, transparent 16%, rgba(255, 255, 255, 0.16), transparent 44%),
+    radial-gradient(circle at 72% 18%, rgba(6, 182, 212, 0.24), transparent 27%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent);
+}
+
 .spark-spotlight::after {
   position: absolute;
   inset: 0;
@@ -178,6 +211,38 @@ textarea {
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.08),
     inset 0 -28px 52px rgba(2, 6, 23, 0.2);
+}
+
+.dashboard-hero-stage {
+  background:
+    linear-gradient(120deg, rgba(79, 70, 229, 0.14), transparent 34%),
+    linear-gradient(245deg, rgba(6, 182, 212, 0.12), transparent 38%),
+    linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+}
+
+.dashboard-hero-stage::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 118px;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(6, 182, 212, 0.1), transparent 58%),
+    linear-gradient(to bottom, transparent, rgba(2, 6, 23, 0.78) 68%, #020617);
+}
+
+.dashboard-hero-stage::before {
+  position: absolute;
+  right: 8%;
+  bottom: 34px;
+  width: min(52vw, 620px);
+  height: 1px;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(to right, transparent, rgba(6, 182, 212, 0.45), rgba(79, 70, 229, 0.28), transparent);
+  box-shadow: 0 0 22px rgba(6, 182, 212, 0.14);
 }
 
 .dashboard-deferred {

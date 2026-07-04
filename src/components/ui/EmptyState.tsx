@@ -11,11 +11,11 @@ type EmptyStateProps = {
 const illustrations = {
   empty: {
     variant: "dark" as const,
-    alt: "Spark preparando a area para novos registros da StickPay",
+    alt: "Spark preparando a área para novos registros da StickPay",
   },
   loading: {
     variant: "dark" as const,
-    alt: "Spark processando informacoes de pagamento na StickPay",
+    alt: "Spark processando informações de pagamento na StickPay",
   },
 };
 
@@ -29,8 +29,9 @@ export function EmptyState({ title, description, action, illustration = "empty" 
         alt={asset.alt}
         quality={100}
         size="sm"
+        mode="minimal"
         className="mb-5"
-        imageClassName="scale-[1.03]"
+        imageClassName="scale-[1.02]"
       />
       <h3 className="text-lg font-extrabold text-primary dark:text-white">{title}</h3>
       <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-600 dark:text-slate-300">{description}</p>

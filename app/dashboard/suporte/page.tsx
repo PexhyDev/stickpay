@@ -8,7 +8,7 @@ export default function SupportPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Suporte</p>
         <h2 className="mt-2 text-3xl font-black text-primary dark:text-white">Atendimento operacional</h2>
         <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-400">
-          Estrutura para abrir chamados sobre cobrancas, webhooks, chaves API e divergencias de status.
+          Estrutura para abrir chamados sobre cobranças, webhooks, chaves API e divergências de status.
         </p>
         <Card className="mt-6 p-6">
           <form className="grid gap-5" aria-label="Abrir chamado">
@@ -16,7 +16,7 @@ export default function SupportPage() {
               label="Categoria"
               name="category"
               options={[
-                { label: "Cobranca Pix", value: "charge" },
+                { label: "Cobrança Pix", value: "charge" },
                 { label: "Webhook", value: "webhook" },
                 { label: "API", value: "api" },
                 { label: "Conta", value: "account" },
@@ -30,7 +30,7 @@ export default function SupportPage() {
           </form>
         </Card>
       </div>
-      <EmptyState title="Historico de chamados" description="Os tickets e respostas do suporte aparecerao aqui na proxima etapa." />
+      <EmptyState title="Histórico de chamados" description="Os tickets e respostas do suporte aparecerão aqui na próxima etapa." />
     </section>
   );
 }

@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
-const apiBaseUrl = process.env.API_BASE_URL ?? "http://localhost:3001";
+const apiBaseUrl = process.env.API_BASE_URL ?? "http://localhost:3333";
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["127.0.0.1"],
+  allowedDevOrigins: ["localhost"],
   poweredByHeader: false,
   async rewrites() {
     return [

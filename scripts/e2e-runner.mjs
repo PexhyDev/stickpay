@@ -2,8 +2,8 @@ import { spawn } from "node:child_process";
 import net from "node:net";
 
 const isWindows = process.platform === "win32";
-const host = "127.0.0.1";
-const port = process.env.E2E_PORT ?? "3000";
+const host = "localhost";
+const port = "3000";
 const serverUrl = process.env.PLAYWRIGHT_BASE_URL ?? `http://${host}:${port}`;
 
 function run(command, args, options = {}) {
@@ -43,7 +43,9 @@ async function assertPortAvailable() {
   });
 
   if (isBusy) {
-    throw new Error(`Port ${port} is already in use. Stop the existing process before running e2e.`);
+    throw new Error(
+      `Port ${port} is already in use. On Windows, run: netstat -ano | findstr :3000, then taskkill /PID NUMERO_DO_PID /F, then npm run dev.`
+    );
   }
 }
 
@@ -72,7 +74,7 @@ let server;
 try {
   await assertPortAvailable();
 
-  server = run("node", ["node_modules/next/dist/bin/next", "dev", "--hostname", host, "--port", port], {
+  server = run("node", ["node_modules/next/dist/bin/next", "dev", "--port", port], {
     env: {
       ...process.env,
       PLAYWRIGHT_BASE_URL: serverUrl,

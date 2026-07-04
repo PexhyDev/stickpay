@@ -1,12 +1,12 @@
 import { BellRing, ListChecks, QrCode, Search, WalletCards, Webhook } from "lucide-react";
 
 const items = [
-  { icon: QrCode, title: "Criar cobranca Pix", detail: "Valor, cliente, descricao e ID externo em um payload direto." },
+  { icon: QrCode, title: "Criar cobrança Pix", detail: "Valor, cliente, descrição e ID externo em um payload direto." },
   { icon: ListChecks, title: "Acompanhar status", detail: "Estados claros para pendente, pago, expirado, cancelado e recusado." },
-  { icon: BellRing, title: "Receber confirmacao", detail: "Atualizacoes transacionais prontas para o financeiro operar." },
-  { icon: Webhook, title: "Enviar webhook", detail: "Eventos padronizados para checkout, ERP, CRM ou painel proprio." },
-  { icon: Search, title: "Consultar transacoes", detail: "Busca por ID, status e historico de alteracoes da operacao." },
-  { icon: WalletCards, title: "Organizar operacao", detail: "Dados estruturados para conciliacao, suporte e acompanhamento." },
+  { icon: BellRing, title: "Receber confirmação", detail: "Atualizações transacionais prontas para o financeiro operar." },
+  { icon: Webhook, title: "Enviar webhook", detail: "Eventos padronizados para checkout, ERP, CRM ou painel próprio." },
+  { icon: Search, title: "Consultar transações", detail: "Busca por ID, status e histórico de alterações da operação." },
+  { icon: WalletCards, title: "Organizar operação", detail: "Dados estruturados para conciliação, suporte e acompanhamento." },
 ];
 
 export function ProductShowcase() {
@@ -17,10 +17,10 @@ export function ProductShowcase() {
           <div className="col-span-12 md:col-span-5">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Produto em uso</p>
             <h2 id="product-title" className="mt-3 text-3xl font-black leading-tight text-primary dark:text-white md:text-4xl">
-              Uma interface para operar pagamentos, nao apenas gerar codigos.
+              Uma interface para operar pagamentos, não apenas gerar códigos.
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
-              A StickPay conecta checkout, status, eventos e registros em uma experiencia consistente para times
+              A StickPay conecta checkout, status, eventos e registros em uma experiência consistente para times
               de produto, suporte e financeiro.
             </p>
           </div>

@@ -12,6 +12,36 @@ StickPay é uma plataforma de pagamentos Pix para operações digitais, com gera
 - GitHub Actions
 - Backend separado em `PexhyDev/stickpay2`
 
+## Como rodar o projeto
+
+1. Instalar dependências:
+
+```bash
+npm install
+```
+
+2. Rodar frontend:
+
+```bash
+npm run dev
+```
+
+3. Acessar:
+
+```text
+http://localhost:3000
+```
+
+4. Caso a porta 3000 esteja ocupada no Windows:
+
+```bash
+netstat -ano | findstr :3000
+taskkill /PID NUMERO_DO_PID /F
+npm run dev
+```
+
+Nunca resolva conflito de porta alterando a porta do projeto. Resolva encerrando o processo antigo ou avisando o desenvolvedor.
+
 ## Comandos
 
 ```bash
@@ -25,9 +55,9 @@ npm run build
 
 No Windows PowerShell com policy restritiva, use `npm.cmd run dev`.
 
-Use o app sempre em `http://127.0.0.1:3000`. Para fluxos que chamam `/api`, rode tambem o backend `stickpay2` em `http://127.0.0.1:3001`; o navegador continua usando apenas o frontend em `3000`, e o Next faz proxy de `/api/:path*` para `API_BASE_URL`.
+Use o app sempre em `http://localhost:3000`. Para fluxos que chamam `/api`, rode também o backend `stickpay2` em `http://localhost:3333`; o navegador continua usando apenas o frontend em `3000`, e o Next faz proxy de `/api/:path*` para `API_BASE_URL`.
 
-As portas de desenvolvimento sao fixas. Se `3000` ja estiver ocupada, feche o processo existente em vez de deixar o Next subir em outra porta.
+As portas de desenvolvimento são fixas. Se `3000` já estiver ocupada, feche o processo existente em vez de deixar o Next subir em outra porta.
 
 ## Variáveis de ambiente
 
@@ -35,10 +65,10 @@ Copie `.env.example` para `.env.local`.
 
 ```bash
 NEXT_PUBLIC_APP_URL=http://localhost:3000
-API_BASE_URL=http://127.0.0.1:3001
+API_BASE_URL=http://localhost:3333
 ```
 
-As credenciais operacionais e variaveis `PAYMENT_PROVIDER_*` ficam somente no backend.
+As credenciais operacionais e variáveis `PAYMENT_PROVIDER_*` ficam somente no backend.
 
 ## Backend StickPay
 

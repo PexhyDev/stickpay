@@ -11,9 +11,9 @@ const code = `await stickpay.pix.createCharge({
 })`;
 
 const points = [
-  { icon: Code2, text: "API para criacao e consulta de cobrancas Pix." },
-  { icon: Webhook, text: "Webhooks de status para automacao de recebimentos." },
-  { icon: KeyRound, text: "Chaves protegidas no backend e integracao orientada a servidor." },
+  { icon: Code2, text: "API para criação e consulta de cobranças Pix." },
+  { icon: Webhook, text: "Webhooks de status para automação de recebimentos." },
+  { icon: KeyRound, text: "Chaves protegidas no backend e integração orientada a servidor." },
 ];
 
 export function ApiIntegration() {
@@ -21,13 +21,13 @@ export function ApiIntegration() {
     <section id="api" className="bg-slate-50 py-20 dark:bg-slate-950" aria-labelledby="api-title">
       <div className="mx-auto grid max-w-7xl grid-cols-12 gap-8 px-6">
         <div className="col-span-12 lg:col-span-5">
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">API e integracao</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">API e integração</p>
           <h2 id="api-title" className="mt-3 text-3xl font-bold text-primary dark:text-white md:text-4xl">
-            Integre cobrancas Pix sem perder visibilidade operacional.
+            Integre cobranças Pix sem perder visibilidade operacional.
           </h2>
           <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
-            Crie cobrancas, consulte transacoes e receba webhooks de status com respostas padronizadas para os
-            sistemas que ja fazem parte da sua operacao.
+            Crie cobranças, consulte transações e receba webhooks de status com respostas padronizadas para os
+            sistemas que já fazem parte da sua operação.
           </p>
           <div className="mt-6 grid gap-3">
             {points.map((item) => {

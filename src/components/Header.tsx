@@ -8,7 +8,7 @@ const navItems = [
   { href: "#plataforma", label: "Plataforma" },
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#api", label: "API" },
-  { href: "#seguranca", label: "Seguranca" },
+  { href: "#seguranca", label: "Segurança" },
   { href: "#precos", label: "Taxa fixa" },
 ];
 
@@ -49,7 +49,7 @@ export function Header() {
       }`}
     >
       <div className="mx-auto grid max-w-7xl grid-cols-12 items-center gap-4 px-6 py-3.5">
-        <a className="col-span-6 flex items-center gap-3 md:col-span-3" href="#" aria-label="StickPay inicio">
+        <a className="col-span-6 flex items-center gap-3 md:col-span-3" href="#" aria-label="StickPay início">
           <img
             src="/assets/stickpay-logo.svg"
             alt="StickPay"
@@ -57,7 +57,7 @@ export function Header() {
           />
         </a>
 
-        <nav className="col-span-6 hidden justify-center gap-8 md:col-span-5 md:flex" aria-label="Navegacao principal">
+        <nav className="col-span-6 hidden justify-center gap-8 md:col-span-5 md:flex" aria-label="Navegação principal">
           {navItems.map((item) => (
             <NavLink key={item.href} {...item} />
           ))}
@@ -92,7 +92,7 @@ export function Header() {
         }`}
       >
         <div className="min-h-0">
-          <nav className="mx-auto flex max-w-7xl flex-col gap-1 py-4" aria-label="Navegacao mobile">
+          <nav className="mx-auto flex max-w-7xl flex-col gap-1 py-4" aria-label="Navegação mobile">
             {navItems.map((item) => (
               <NavLink key={item.href} {...item} onClick={() => setMenuOpen(false)} />
             ))}

@@ -3,8 +3,8 @@ import { BellRing, CheckCircle2, ClipboardList, QrCode, ReceiptText } from "luci
 const steps = [
   {
     icon: ClipboardList,
-    title: "Cobranca criada",
-    description: "A operacao registra valor, pagador, descricao e identificador proprio.",
+    title: "Cobrança criada",
+    description: "A operação registra valor, pagador, descrição e identificador próprio.",
   },
   {
     icon: QrCode,
@@ -14,17 +14,17 @@ const steps = [
   {
     icon: CheckCircle2,
     title: "Pagamento confirmado",
-    description: "O status muda quando a transacao e liquidada no fluxo Pix.",
+    description: "O status muda quando a transação é liquidada no fluxo Pix.",
   },
   {
     icon: BellRing,
     title: "Webhook enviado",
-    description: "Eventos mantem sistemas internos e paineis sincronizados.",
+    description: "Eventos mantêm sistemas internos e painéis sincronizados.",
   },
   {
     icon: ReceiptText,
-    title: "Transacao conciliada",
-    description: "Historico, taxas, IDs e eventos ficam prontos para conferencia.",
+    title: "Transação conciliada",
+    description: "Histórico, taxas, IDs e eventos ficam prontos para conferência.",
   },
 ];
 
@@ -38,12 +38,12 @@ export function TransactionFlow() {
           <div className="col-span-12 md:col-span-5">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Fluxo transacional</p>
             <h2 id="flow-title" className="mt-3 text-3xl font-black leading-tight md:text-4xl">
-              Cobranca criada, Pix gerado, pagamento confirmado.
+              Cobrança criada, Pix gerado, pagamento confirmado.
             </h2>
           </div>
           <p className="col-span-12 text-sm leading-7 text-slate-300 md:col-span-6 md:col-start-7">
-            Da criacao da cobranca ao registro final, a StickPay organiza os estados do Pix para reduzir ruido
-            operacional e facilitar a conciliacao.
+            Da criação da cobrança ao registro final, a StickPay organiza os estados do Pix para reduzir ruído
+            operacional e facilitar a conciliação.
           </p>
         </div>
 

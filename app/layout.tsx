@@ -60,7 +60,7 @@ const schema = {
       "@type": "UnitPriceSpecification",
       price: "0.40",
       priceCurrency: "BRL",
-      unitText: "transacao Pix",
+      unitText: "transação Pix",
     },
   },
 };
