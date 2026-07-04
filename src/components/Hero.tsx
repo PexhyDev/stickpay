@@ -45,9 +45,9 @@ export function Hero() {
             </p>
             <h1
               id="hero-title"
-              className="mt-4 max-w-[620px] text-4xl font-black leading-[1.04] tracking-[-0.02em] text-primary dark:text-white md:text-5xl xl:text-[3.45rem]"
+              className="mt-4 max-w-[620px] text-3xl font-black leading-[1.06] tracking-[-0.02em] text-primary dark:text-white md:text-4xl xl:text-5xl"
             >
-              Pagamentos Pix com estrutura de operacao.
+              Pagamento via Pix com a menor taxa possivel
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 dark:text-slate-300">
               A StickPay ajuda negocios digitais a gerar cobrancas Pix, acompanhar status, automatizar eventos e
