@@ -7,7 +7,7 @@ type HeaderProps = {
 
 export function Header({ onOpenSidebar }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/94 px-4 py-3 backdrop-blur-sm sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-30 border-b border-slate-800/70 bg-slate-950/90 px-4 py-3 shadow-[0_10px_28px_rgba(2,6,23,0.18)] backdrop-blur-[6px] sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-[1640px] items-center justify-between gap-4">
         <div className="flex min-w-0 items-center gap-3">
           <button
@@ -25,11 +25,11 @@ export function Header({ onOpenSidebar }: HeaderProps) {
         </div>
 
         <div className="flex shrink-0 items-center gap-2.5">
-          <div className="hidden items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/74 px-3 py-2 text-xs font-bold text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] md:flex">
+          <div className="hidden items-center gap-2 rounded-lg border border-slate-800/80 bg-slate-900/60 px-3 py-2 text-xs font-bold text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] md:flex">
             <WalletCards aria-hidden="true" size={15} className="text-cyan-300" />
             R$ 0,00 / R$ 1K
           </div>
-          <div className="hidden items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/74 px-3 py-2 text-xs font-bold text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:flex">
+          <div className="hidden items-center gap-2 rounded-lg border border-slate-800/80 bg-slate-900/60 px-3 py-2 text-xs font-bold text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:flex">
             <Moon aria-hidden="true" size={15} className="text-cyan-300" />
             Escuro
           </div>

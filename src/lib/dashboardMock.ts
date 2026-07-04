@@ -33,7 +33,7 @@ export type DashboardAction = {
   title: string;
   description: string;
   href: string;
-  icon: "qr" | "send" | "withdraw" | "statement" | "docs" | "webhook" | "checkout";
+  icon: "qr" | "send" | "withdraw" | "statement" | "docs" | "webhook" | "checkout" | "customers";
 };
 
 export const accountOverview = {
@@ -162,6 +162,12 @@ export const quickActions: DashboardAction[] = [
     description: "Acompanhe produtos, cupons e links de pagamento.",
     href: "/dashboard/cobrancas",
     icon: "checkout",
+  },
+  {
+    title: "Gerenciar clientes",
+    description: "Acompanhe clientes, pagadores e histórico de relacionamento.",
+    href: "/dashboard/clientes",
+    icon: "customers",
   },
 ];
 

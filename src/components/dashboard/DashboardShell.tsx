@@ -17,7 +17,7 @@ export function DashboardShell({ children }: { children: ReactNode }) {
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       <div className="relative lg:pl-72">
         <Header onOpenSidebar={() => setIsSidebarOpen(true)} />
-        <main className="mx-auto w-full max-w-[1640px] px-4 py-4 sm:px-6 lg:px-8">{children}</main>
+        <main className="mx-auto w-full max-w-[1640px] px-4 pb-10 pt-4 sm:px-6 lg:px-8">{children}</main>
       </div>
     </div>
   );

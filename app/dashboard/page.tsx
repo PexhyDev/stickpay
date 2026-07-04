@@ -2,9 +2,11 @@ import {
   AlertTriangle,
   ArrowRight,
   Banknote,
+  BarChart3,
   BookOpen,
   CalendarDays,
   CheckCircle2,
+  CircleDashed,
   Eye,
   FileText,
   QrCode,
@@ -13,6 +15,7 @@ import {
   ShieldCheck,
   ShoppingCart,
   TrendingUp,
+  Users,
   Webhook,
   WalletCards,
 } from "lucide-react";
@@ -41,27 +44,37 @@ const actionIcons: Record<DashboardAction["icon"], typeof QrCode> = {
   docs: BookOpen,
   webhook: Webhook,
   checkout: ShoppingCart,
+  customers: Users,
 };
 
 const noticeTones = {
-  cyan: "border-cyan-400/20 bg-cyan-400/10 text-cyan-200",
-  indigo: "border-indigo-400/20 bg-indigo-400/10 text-indigo-200",
-  amber: "border-amber-400/20 bg-amber-400/10 text-amber-200",
+  cyan: "border-cyan-400/20 bg-cyan-400/[0.07] text-cyan-200",
+  indigo: "border-indigo-400/20 bg-indigo-400/[0.07] text-indigo-200",
+  amber: "border-amber-300/20 bg-amber-300/[0.07] text-amber-100",
 };
+
+const ghostTransactionRows = [
+  ["SPK-0001", "Pix", "R$ 0,00", "Aprovado", "Hoje"],
+  ["SPK-0002", "Pix", "R$ 0,00", "Pendente", "Hoje"],
+  ["SPK-0003", "Saque", "R$ 0,00", "Agendado", "Ontem"],
+];
 
 export default function DashboardPage() {
   const hasPerformanceData = performanceSeries.some((item) => item.value > 0);
   const hasTransactions = recentTransactions.length > 0;
 
   return (
-    <div className="grid min-w-0 gap-12 lg:gap-14">
+    <div className="grid min-w-0 gap-14 lg:gap-16">
       <section className="dashboard-hero-stage relative isolate grid min-h-[calc(100svh-104px)] w-full min-w-0 content-start overflow-hidden rounded-lg border border-slate-800/90 bg-slate-950/50 p-4 pb-12 shadow-[0_24px_70px_rgba(2,6,23,0.3)] sm:p-5 sm:pb-14 lg:min-h-[calc(100svh-92px)]">
         <div className="pointer-events-none absolute left-1/2 top-12 h-56 w-56 -translate-x-1/2 rounded-full bg-cyan-400/8 blur-3xl" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-20 top-16 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-x-8 bottom-10 z-10 hidden h-px bg-gradient-to-r from-transparent via-cyan-300/35 to-transparent sm:block" aria-hidden="true" />
-        <div className="pointer-events-none absolute bottom-4 left-1/2 z-10 hidden -translate-x-1/2 items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 sm:flex" aria-hidden="true">
+        <div className="pointer-events-none absolute bottom-4 left-1/2 z-10 hidden -translate-x-1/2 items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500 sm:flex" aria-hidden="true">
           <span className="h-px w-7 bg-slate-700/70" />
-          Role
+          <span className="relative h-6 w-3 rounded-full border border-slate-600/80">
+            <span className="absolute left-1/2 top-1 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-cyan-300/80 animate-badge-breathe" />
+          </span>
+          Role para explorar
           <span className="h-px w-7 bg-slate-700/70" />
         </div>
 
@@ -145,7 +158,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="dashboard-deferred min-w-0 scroll-mt-24">
+      <section className="dashboard-deferred min-w-0 scroll-mt-28">
         <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-cyan-300">Atalhos operacionais</p>
@@ -156,7 +169,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid auto-rows-fr gap-3 md:grid-cols-2 xl:grid-cols-4">
           {quickActions.map((action) => {
             const Icon = actionIcons[action.icon];
 
@@ -164,14 +177,14 @@ export default function DashboardPage() {
               <Link
                 key={action.title}
                 href={action.href}
-                className="group rounded-lg border border-slate-800 bg-slate-900/66 p-4 shadow-[0_14px_36px_rgba(2,6,23,0.16)] transition duration-300 hover:-translate-y-1 hover:border-cyan-400/45 hover:bg-slate-900 hover:shadow-[0_22px_52px_rgba(6,182,212,0.1)]"
+                className="group flex min-h-[188px] flex-col rounded-lg border border-slate-800 bg-slate-900/60 p-4 shadow-[0_14px_34px_rgba(2,6,23,0.14)] transition duration-300 hover:-translate-y-1 hover:border-cyan-400/45 hover:bg-slate-900 hover:shadow-[0_20px_44px_rgba(6,182,212,0.09)]"
               >
-                <span className="grid h-10 w-10 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 transition duration-300 group-hover:border-cyan-300/50 group-hover:bg-cyan-400/15">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 transition duration-300 group-hover:border-cyan-300/50 group-hover:bg-cyan-400/15 group-hover:text-cyan-200">
                   <Icon aria-hidden="true" size={19} />
                 </span>
                 <h4 className="mt-4 text-base font-black text-white">{action.title}</h4>
-                <p className="mt-2 min-h-12 text-sm leading-6 text-slate-400">{action.description}</p>
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-cyan-300 transition duration-300 group-hover:gap-3">
+                <p className="mt-2 text-sm leading-6 text-slate-400">{action.description}</p>
+                <span className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-extrabold text-cyan-300 transition duration-300 group-hover:translate-x-0.5 group-hover:text-cyan-200">
                   Abrir
                   <ArrowRight aria-hidden="true" size={15} />
                 </span>
@@ -181,7 +194,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="dashboard-deferred grid min-w-0 scroll-mt-24 gap-6 xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.85fr)]">
+      <section className="dashboard-deferred grid min-w-0 scroll-mt-28 gap-6 xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.85fr)]">
         <div className="overflow-hidden rounded-lg border border-slate-800 bg-slate-900/66 shadow-[0_18px_46px_rgba(2,6,23,0.18)]">
           <div className="flex flex-col gap-4 border-b border-slate-800 p-5 md:flex-row md:items-center md:justify-between">
             <div>
@@ -205,11 +218,13 @@ export default function DashboardPage() {
           </div>
 
           <div className="relative min-h-[330px] p-5">
-            <div className="absolute inset-x-5 top-5 bottom-14 grid grid-rows-5" aria-hidden="true">
+            <div className="absolute inset-x-5 bottom-16 top-6 grid grid-rows-5" aria-hidden="true">
               {Array.from({ length: 5 }).map((_, index) => (
-                <span key={index} className="border-t border-slate-800" />
+                <span key={index} className="border-t border-slate-800/80" />
               ))}
             </div>
+            <div className="absolute bottom-16 left-5 top-6 w-px bg-slate-800/80" aria-hidden="true" />
+            <div className="absolute inset-x-5 bottom-16 h-px bg-slate-800/80" aria-hidden="true" />
 
             {hasPerformanceData ? (
               <div className="relative z-10 flex h-64 items-end gap-3">
@@ -224,19 +239,26 @@ export default function DashboardPage() {
                 ))}
               </div>
             ) : (
-              <div className="relative z-10 grid min-h-[268px] place-items-center rounded-lg border border-dashed border-slate-700 bg-slate-950/36 px-5 text-center">
-                <div className="mx-auto max-w-md">
-                  <SparkSpotlight
-                    variant="dark"
-                    alt="Spark preparando os gráficos da dashboard"
-                    size="sm"
-                    mode="minimal"
-                    className="mb-4"
-                    imageClassName="scale-[1.02]"
-                  />
-                  <h4 className="text-lg font-black text-white">Ainda sem dados no gráfico</h4>
+              <div className="relative z-10 grid min-h-[268px] content-center rounded-lg border border-dashed border-slate-700/90 bg-slate-950/30 px-5 text-center">
+                <div className="pointer-events-none absolute inset-5" aria-hidden="true">
+                  <div className="absolute bottom-7 left-4 right-4 h-28 overflow-hidden">
+                    <div className="absolute bottom-2 left-0 h-16 w-[18%] rounded-t-lg bg-cyan-300/10" />
+                    <div className="absolute bottom-2 left-[20%] h-24 w-[18%] rounded-t-lg bg-indigo-300/10" />
+                    <div className="absolute bottom-2 left-[40%] h-12 w-[18%] rounded-t-lg bg-cyan-300/[0.07]" />
+                    <div className="absolute bottom-2 left-[60%] h-20 w-[18%] rounded-t-lg bg-indigo-300/[0.07]" />
+                    <div className="absolute bottom-2 left-[80%] h-14 w-[18%] rounded-t-lg bg-cyan-300/[0.07]" />
+                    <svg className="absolute inset-x-0 bottom-1 h-28 w-full text-cyan-300/20" viewBox="0 0 420 120" fill="none" preserveAspectRatio="none">
+                      <path d="M0 86 C54 70 86 88 126 62 C164 38 190 54 226 46 C278 34 306 58 344 38 C374 22 394 30 420 18" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="relative mx-auto max-w-md">
+                  <span className="mx-auto grid h-12 w-12 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                    <BarChart3 aria-hidden="true" size={24} />
+                  </span>
+                  <h4 className="mt-4 text-lg font-black text-white">Ainda sem dados no período</h4>
                   <p className="mt-2 text-sm leading-6 text-slate-400">
-                    Assim que suas primeiras transações forem aprovadas, seus dados de volume aparecerão aqui.
+                    Assim que suas primeiras transações forem aprovadas, o volume recebido aparecerá aqui.
                   </p>
                 </div>
               </div>
@@ -245,7 +267,7 @@ export default function DashboardPage() {
         </div>
 
         <aside className="grid content-start gap-4">
-          <section className="rounded-lg border border-slate-800 bg-slate-900/66 p-5 shadow-[0_18px_46px_rgba(2,6,23,0.16)]">
+          <section className="rounded-lg border border-slate-800 bg-slate-900/60 p-5 shadow-[0_16px_38px_rgba(2,6,23,0.14)]">
             <div className="flex items-center gap-3">
               <span className="grid h-10 w-10 place-items-center rounded-lg border border-indigo-400/20 bg-indigo-400/10 text-indigo-200">
                 <TrendingUp aria-hidden="true" size={19} />
@@ -256,11 +278,15 @@ export default function DashboardPage() {
               </div>
             </div>
             <p className="mt-4 text-sm leading-6 text-slate-400">
-              Quando houver tráfego no checkout, este espaço exibirá gargalos de expiração, pendências e aprovação Pix.
+              Quando houver tráfego no checkout, a StickPay exibirá gargalos de expiração, pendências e aprovação Pix.
             </p>
+            <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-slate-700/80 bg-slate-950/36 px-3 py-2 text-xs font-extrabold text-slate-300">
+              <CircleDashed aria-hidden="true" size={14} className="text-cyan-300" />
+              Sem dados suficientes
+            </div>
           </section>
 
-          <section className="rounded-lg border border-slate-800 bg-slate-900/66 p-5 shadow-[0_18px_46px_rgba(2,6,23,0.16)]">
+          <section className="rounded-lg border border-slate-800 bg-slate-900/60 p-5 shadow-[0_16px_38px_rgba(2,6,23,0.14)]">
             <div className="flex items-center gap-3">
               <span className="grid h-10 w-10 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300">
                 <AlertTriangle aria-hidden="true" size={19} />
@@ -273,7 +299,7 @@ export default function DashboardPage() {
 
             <div className="mt-5 grid gap-3">
               {systemNotices.map((notice) => (
-                <article key={notice.title} className={`rounded-lg border p-4 ${noticeTones[notice.tone]}`}>
+                <article key={notice.title} className={`rounded-lg border p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] ${noticeTones[notice.tone]}`}>
                   <h4 className="text-sm font-black text-white">{notice.title}</h4>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{notice.description}</p>
                 </article>
@@ -283,7 +309,7 @@ export default function DashboardPage() {
         </aside>
       </section>
 
-      <section className="dashboard-deferred grid min-w-0 scroll-mt-24 gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.85fr)]">
+      <section className="dashboard-deferred grid min-w-0 scroll-mt-28 gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.85fr)]">
         <div>
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -298,57 +324,95 @@ export default function DashboardPage() {
           </div>
 
           {hasTransactions ? (
-            <Table headers={["Referencia", "Pagador", "Valor", "Status", "Data", ""]}>
+            <Table headers={["Referência", "Pagador", "Valor", "Status", "Data", ""]}>
               {recentTransactions.map((transaction) => (
                 <TransactionRow key={transaction.id} {...transaction} />
               ))}
             </Table>
           ) : (
-            <div className="rounded-lg border border-dashed border-slate-700 bg-slate-900/66 px-6 py-10 text-center shadow-[0_18px_46px_rgba(2,6,23,0.16)]">
-              <SparkSpotlight
-                variant="dark"
-                alt="Spark aguardando a primeira transação"
-                size="sm"
-                mode="minimal"
-                className="mb-4"
-                imageClassName="scale-[1.02]"
-              />
-              <h4 className="text-lg font-black text-white">Nenhuma transação encontrada ainda</h4>
-              <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-400">
-                Crie sua primeira cobrança Pix para começar a acompanhar aprovação, pagador, status e valor.
-              </p>
-              <div className="mt-5">
-                <Button>
-                  <QrCode aria-hidden="true" size={16} />
-                  Criar cobrança Pix
-                </Button>
+            <div className="overflow-hidden rounded-lg border border-slate-800 bg-slate-900/66 shadow-[0_16px_38px_rgba(2,6,23,0.14)]">
+              <div className="hidden overflow-x-auto sm:block">
+                <table className="min-w-[720px] w-full divide-y divide-slate-800">
+                  <thead className="bg-slate-950/55">
+                    <tr>
+                      {["Referência", "Tipo", "Valor", "Status", "Data", "Ação"].map((header) => (
+                        <th key={header} className="px-4 py-3 text-left text-xs font-extrabold uppercase tracking-[0.12em] text-slate-400">
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/90">
+                    {ghostTransactionRows.map((row) => (
+                      <tr key={row[0]} className="opacity-45">
+                        {row.map((cell, index) => (
+                          <td key={`${row[0]}-${cell}-${index}`} className="px-4 py-4">
+                            <span className={`block h-3 rounded-full bg-slate-700/70 ${index === 0 ? "w-24" : index === 2 ? "w-16" : "w-20"}`} />
+                          </td>
+                        ))}
+                        <td className="px-4 py-4">
+                          <span className="block h-8 w-8 rounded-lg border border-slate-700 bg-slate-800/60" />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="grid gap-3 p-4 sm:hidden">
+                {ghostTransactionRows.map((row) => (
+                  <article key={`mobile-${row[0]}`} className="rounded-lg border border-slate-800 bg-slate-950/30 p-4 opacity-55">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="h-3 w-24 rounded-full bg-slate-700/80" />
+                      <span className="h-6 w-16 rounded-full bg-slate-800" />
+                    </div>
+                    <div className="mt-4 grid gap-2">
+                      <span className="h-3 w-32 rounded-full bg-slate-700/70" />
+                      <span className="h-3 w-20 rounded-full bg-slate-700/70" />
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <div className="border-t border-slate-800 bg-slate-950/30 px-6 py-7 text-center">
+                <h4 className="text-lg font-black text-white">Nenhuma transação encontrada ainda</h4>
+                <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-400">
+                  Crie sua primeira cobrança Pix para acompanhar aprovação, pagador, status e valor.
+                </p>
+                <div className="mt-5">
+                  <Button>
+                    <QrCode aria-hidden="true" size={16} />
+                    Criar cobrança Pix
+                  </Button>
+                </div>
               </div>
             </div>
           )}
         </div>
 
         <aside className="grid content-start gap-4">
-          <section className="rounded-lg border border-emerald-400/20 bg-emerald-400/10 p-5 shadow-[0_18px_46px_rgba(2,6,23,0.14)]">
+          <section className="rounded-lg border border-slate-800 bg-slate-900/66 p-5 shadow-[0_16px_38px_rgba(2,6,23,0.14)]">
             <div className="flex items-start gap-3">
-              <span className="grid h-11 w-11 place-items-center rounded-lg border border-emerald-400/20 bg-emerald-400/10 text-emerald-200">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-emerald-400/20 bg-emerald-400/10 text-emerald-200">
                 <ShieldCheck aria-hidden="true" size={21} />
               </span>
               <div>
                 <p className="text-sm font-bold uppercase tracking-[0.14em] text-emerald-200">Status da conta</p>
-                <h3 className="mt-2 text-xl font-black text-white">{accountOverview.status}</h3>
-                <p className="mt-2 text-sm leading-6 text-emerald-50/80">{accountOverview.statusDescription}</p>
+                <h3 className="mt-2 text-xl font-black text-white">Conta ativa</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{accountOverview.statusDescription}</p>
               </div>
             </div>
             <div className="mt-5 grid gap-3">
-              <div className="rounded-lg border border-emerald-400/15 bg-slate-950/30 p-3">
+              <div className="rounded-lg border border-slate-800 bg-slate-950/30 p-3">
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-200/80">Limite atual</p>
                 <p className="mt-1 text-lg font-black text-white">{accountOverview.currentLimit}</p>
               </div>
-              <div className="rounded-lg border border-emerald-400/15 bg-slate-950/30 p-3">
+              <div className="rounded-lg border border-slate-800 bg-slate-950/30 p-3">
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-200/80">Próximo nível</p>
-                <p className="mt-1 text-sm leading-6 text-emerald-50/80">{accountOverview.nextLevel}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-300">{accountOverview.nextLevel}</p>
               </div>
             </div>
+            <Button variant="ghost" className="mt-4 w-full justify-center border border-slate-800 bg-slate-950/30">
+              Verificar dados
+            </Button>
           </section>
         </aside>
       </section>
