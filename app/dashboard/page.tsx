@@ -64,7 +64,7 @@ export default function DashboardPage() {
   const hasTransactions = recentTransactions.length > 0;
 
   return (
-    <div className="grid min-w-0 gap-14 lg:gap-16">
+    <div className="grid min-w-0 gap-12 lg:gap-14">
       <section className="dashboard-hero-stage relative isolate grid min-h-[calc(100svh-104px)] w-full min-w-0 content-start overflow-hidden rounded-lg border border-slate-800/90 bg-slate-950/50 p-4 pb-12 shadow-[0_24px_70px_rgba(2,6,23,0.3)] sm:p-5 sm:pb-14 lg:min-h-[calc(100svh-92px)]">
         <div className="pointer-events-none absolute left-1/2 top-12 h-56 w-56 -translate-x-1/2 rounded-full bg-cyan-400/8 blur-3xl" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-20 top-16 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl" aria-hidden="true" />
@@ -158,7 +158,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="dashboard-deferred min-w-0 scroll-mt-28">
+      <section className="dashboard-deferred min-w-0 scroll-mt-24">
         <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-cyan-300">Atalhos operacionais</p>
@@ -177,16 +177,17 @@ export default function DashboardPage() {
               <Link
                 key={action.title}
                 href={action.href}
-                className="group flex min-h-[188px] flex-col rounded-lg border border-slate-800 bg-slate-900/60 p-4 shadow-[0_14px_34px_rgba(2,6,23,0.14)] transition duration-300 hover:-translate-y-1 hover:border-cyan-400/45 hover:bg-slate-900 hover:shadow-[0_20px_44px_rgba(6,182,212,0.09)]"
+                className="group relative flex min-h-[188px] flex-col overflow-hidden rounded-lg border border-slate-800 bg-slate-900/60 p-4 shadow-[0_14px_34px_rgba(2,6,23,0.14)] transition-[transform,border-color,background-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:bg-slate-900 hover:shadow-[0_20px_44px_rgba(6,182,212,0.1),inset_0_1px_0_rgba(255,255,255,0.04)]"
               >
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 transition duration-300 group-hover:border-cyan-300/50 group-hover:bg-cyan-400/15 group-hover:text-cyan-200">
+                <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/0 to-transparent transition duration-300 group-hover:via-cyan-300/45" aria-hidden="true" />
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 transition-[border-color,background-color,color,transform] duration-300 group-hover:translate-y-[-1px] group-hover:border-cyan-300/50 group-hover:bg-cyan-400/15 group-hover:text-cyan-200">
                   <Icon aria-hidden="true" size={19} />
                 </span>
                 <h4 className="mt-4 text-base font-black text-white">{action.title}</h4>
                 <p className="mt-2 text-sm leading-6 text-slate-400">{action.description}</p>
-                <span className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-extrabold text-cyan-300 transition duration-300 group-hover:translate-x-0.5 group-hover:text-cyan-200">
+                <span className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-extrabold text-cyan-300 transition-colors duration-300 group-hover:text-cyan-200">
                   Abrir
-                  <ArrowRight aria-hidden="true" size={15} />
+                  <ArrowRight aria-hidden="true" size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </Link>
             );
@@ -194,9 +195,9 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="dashboard-deferred grid min-w-0 scroll-mt-28 gap-6 xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.85fr)]">
-        <div className="overflow-hidden rounded-lg border border-slate-800 bg-slate-900/66 shadow-[0_18px_46px_rgba(2,6,23,0.18)]">
-          <div className="flex flex-col gap-4 border-b border-slate-800 p-5 md:flex-row md:items-center md:justify-between">
+      <section className="dashboard-deferred grid min-w-0 scroll-mt-24 gap-5 xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.85fr)]">
+        <div className="overflow-hidden rounded-lg border border-slate-800 bg-slate-900/66 shadow-[0_18px_46px_rgba(2,6,23,0.18),inset_0_1px_0_rgba(255,255,255,0.03)]">
+          <div className="flex flex-col gap-4 border-b border-slate-800/90 bg-slate-950/16 p-5 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.14em] text-cyan-300">Análise e performance</p>
               <h3 className="mt-2 text-2xl font-black text-white">Volume recebido</h3>
@@ -217,14 +218,15 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="relative min-h-[330px] p-5">
-            <div className="absolute inset-x-5 bottom-16 top-6 grid grid-rows-5" aria-hidden="true">
+          <div className="relative min-h-[292px] p-5">
+            <div className="absolute inset-x-5 bottom-14 top-6 grid grid-rows-5" aria-hidden="true">
               {Array.from({ length: 5 }).map((_, index) => (
-                <span key={index} className="border-t border-slate-800/80" />
+                <span key={index} className="border-t border-slate-800/70" />
               ))}
             </div>
-            <div className="absolute bottom-16 left-5 top-6 w-px bg-slate-800/80" aria-hidden="true" />
-            <div className="absolute inset-x-5 bottom-16 h-px bg-slate-800/80" aria-hidden="true" />
+            <div className="absolute inset-x-5 bottom-14 top-6 bg-[linear-gradient(90deg,rgba(148,163,184,0.055)_1px,transparent_1px)] bg-[length:64px_100%]" aria-hidden="true" />
+            <div className="absolute bottom-14 left-5 top-6 w-px bg-slate-800/80" aria-hidden="true" />
+            <div className="absolute inset-x-5 bottom-14 h-px bg-slate-800/80" aria-hidden="true" />
 
             {hasPerformanceData ? (
               <div className="relative z-10 flex h-64 items-end gap-3">
@@ -239,20 +241,22 @@ export default function DashboardPage() {
                 ))}
               </div>
             ) : (
-              <div className="relative z-10 grid min-h-[268px] content-center rounded-lg border border-dashed border-slate-700/90 bg-slate-950/30 px-5 text-center">
-                <div className="pointer-events-none absolute inset-5" aria-hidden="true">
-                  <div className="absolute bottom-7 left-4 right-4 h-28 overflow-hidden">
-                    <div className="absolute bottom-2 left-0 h-16 w-[18%] rounded-t-lg bg-cyan-300/10" />
-                    <div className="absolute bottom-2 left-[20%] h-24 w-[18%] rounded-t-lg bg-indigo-300/10" />
-                    <div className="absolute bottom-2 left-[40%] h-12 w-[18%] rounded-t-lg bg-cyan-300/[0.07]" />
-                    <div className="absolute bottom-2 left-[60%] h-20 w-[18%] rounded-t-lg bg-indigo-300/[0.07]" />
-                    <div className="absolute bottom-2 left-[80%] h-14 w-[18%] rounded-t-lg bg-cyan-300/[0.07]" />
-                    <svg className="absolute inset-x-0 bottom-1 h-28 w-full text-cyan-300/20" viewBox="0 0 420 120" fill="none" preserveAspectRatio="none">
-                      <path d="M0 86 C54 70 86 88 126 62 C164 38 190 54 226 46 C278 34 306 58 344 38 C374 22 394 30 420 18" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+              <div className="relative z-10 grid min-h-[232px] content-center overflow-hidden rounded-lg border border-dashed border-slate-700/80 bg-slate-950/28 px-5 py-8 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.025)]">
+                <div className="pointer-events-none absolute inset-4" aria-hidden="true">
+                  <div className="absolute bottom-2 left-2 right-2 h-32 overflow-hidden rounded-lg">
+                    <div className="absolute bottom-0 left-0 h-12 w-[12%] rounded-t-md bg-cyan-300/[0.08]" />
+                    <div className="absolute bottom-0 left-[14%] h-20 w-[12%] rounded-t-md bg-indigo-300/[0.09]" />
+                    <div className="absolute bottom-0 left-[28%] h-9 w-[12%] rounded-t-md bg-cyan-300/[0.06]" />
+                    <div className="absolute bottom-0 left-[42%] h-24 w-[12%] rounded-t-md bg-indigo-300/[0.08]" />
+                    <div className="absolute bottom-0 left-[56%] h-14 w-[12%] rounded-t-md bg-cyan-300/[0.06]" />
+                    <div className="absolute bottom-0 left-[70%] h-28 w-[12%] rounded-t-md bg-indigo-300/[0.07]" />
+                    <div className="absolute bottom-0 left-[84%] h-16 w-[12%] rounded-t-md bg-cyan-300/[0.06]" />
+                    <svg className="absolute inset-x-0 bottom-2 h-28 w-full text-cyan-300/18" viewBox="0 0 420 120" fill="none" preserveAspectRatio="none">
+                      <path d="M0 86 C54 70 86 88 126 62 C164 38 190 54 226 46 C278 34 306 58 344 38 C374 22 394 30 420 18" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeDasharray="8 10" />
                     </svg>
                   </div>
                 </div>
-                <div className="relative mx-auto max-w-md">
+                <div className="relative mx-auto max-w-md rounded-lg border border-slate-800/70 bg-slate-950/62 px-5 py-5 shadow-[0_14px_34px_rgba(2,6,23,0.16)]">
                   <span className="mx-auto grid h-12 w-12 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
                     <BarChart3 aria-hidden="true" size={24} />
                   </span>
@@ -266,8 +270,13 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <aside className="grid content-start gap-4">
-          <section className="rounded-lg border border-slate-800 bg-slate-900/60 p-5 shadow-[0_16px_38px_rgba(2,6,23,0.14)]">
+        <aside className="grid content-start gap-3">
+          <div className="rounded-lg border border-slate-800/80 bg-slate-950/32 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.025)]">
+            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-cyan-300">Insights da operação</p>
+            <p className="mt-1 text-sm leading-5 text-slate-400">Leituras úteis sem interromper o fluxo normal da conta.</p>
+          </div>
+
+          <section className="rounded-lg border border-indigo-300/15 bg-slate-900/60 p-5 shadow-[0_16px_38px_rgba(2,6,23,0.14),inset_0_1px_0_rgba(255,255,255,0.03)] transition-[border-color,background-color,transform] duration-300 hover:-translate-y-0.5 hover:border-indigo-300/28 hover:bg-slate-900/76">
             <div className="flex items-center gap-3">
               <span className="grid h-10 w-10 place-items-center rounded-lg border border-indigo-400/20 bg-indigo-400/10 text-indigo-200">
                 <TrendingUp aria-hidden="true" size={19} />
@@ -286,7 +295,7 @@ export default function DashboardPage() {
             </div>
           </section>
 
-          <section className="rounded-lg border border-slate-800 bg-slate-900/60 p-5 shadow-[0_16px_38px_rgba(2,6,23,0.14)]">
+          <section className="rounded-lg border border-cyan-300/15 bg-slate-900/60 p-5 shadow-[0_16px_38px_rgba(2,6,23,0.14),inset_0_1px_0_rgba(255,255,255,0.03)]">
             <div className="flex items-center gap-3">
               <span className="grid h-10 w-10 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300">
                 <AlertTriangle aria-hidden="true" size={19} />
@@ -299,7 +308,7 @@ export default function DashboardPage() {
 
             <div className="mt-5 grid gap-3">
               {systemNotices.map((notice) => (
-                <article key={notice.title} className={`rounded-lg border p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] ${noticeTones[notice.tone]}`}>
+                <article key={notice.title} className={`rounded-lg border p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transition-[border-color,background-color,transform] duration-300 hover:-translate-y-0.5 ${noticeTones[notice.tone]}`}>
                   <h4 className="text-sm font-black text-white">{notice.title}</h4>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{notice.description}</p>
                 </article>
@@ -309,7 +318,7 @@ export default function DashboardPage() {
         </aside>
       </section>
 
-      <section className="dashboard-deferred grid min-w-0 scroll-mt-28 gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.85fr)]">
+      <section className="dashboard-deferred grid min-w-0 scroll-mt-24 gap-5 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.85fr)]">
         <div>
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -317,7 +326,7 @@ export default function DashboardPage() {
               <h3 className="mt-2 text-2xl font-black text-white">Últimas transações</h3>
               <p className="mt-1 text-sm leading-6 text-slate-400">Pix, saques, transferências, estornos e MED em um histórico único.</p>
             </div>
-            <Button variant="secondary">
+            <Button variant="secondary" className="border-slate-700 bg-slate-900/72 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] hover:border-cyan-300/55 hover:bg-slate-800/90">
               <Eye aria-hidden="true" size={16} />
               Ver extrato
             </Button>
@@ -330,13 +339,21 @@ export default function DashboardPage() {
               ))}
             </Table>
           ) : (
-            <div className="overflow-hidden rounded-lg border border-slate-800 bg-slate-900/66 shadow-[0_16px_38px_rgba(2,6,23,0.14)]">
+            <div className="overflow-hidden rounded-lg border border-slate-800 bg-slate-900/66 shadow-[0_16px_38px_rgba(2,6,23,0.14),inset_0_1px_0_rgba(255,255,255,0.03)]">
               <div className="hidden overflow-x-auto sm:block">
-                <table className="min-w-[720px] w-full divide-y divide-slate-800">
-                  <thead className="bg-slate-950/55">
+                <table className="min-w-[760px] w-full table-fixed divide-y divide-slate-800">
+                  <colgroup>
+                    <col className="w-[24%]" />
+                    <col className="w-[15%]" />
+                    <col className="w-[16%]" />
+                    <col className="w-[17%]" />
+                    <col className="w-[16%]" />
+                    <col className="w-[12%]" />
+                  </colgroup>
+                  <thead className="bg-slate-950/62">
                     <tr>
                       {["Referência", "Tipo", "Valor", "Status", "Data", "Ação"].map((header) => (
-                        <th key={header} className="px-4 py-3 text-left text-xs font-extrabold uppercase tracking-[0.12em] text-slate-400">
+                        <th key={header} className="px-5 py-3.5 text-left text-xs font-extrabold uppercase tracking-[0.12em] text-slate-400">
                           {header}
                         </th>
                       ))}
@@ -344,14 +361,14 @@ export default function DashboardPage() {
                   </thead>
                   <tbody className="divide-y divide-slate-800/90">
                     {ghostTransactionRows.map((row) => (
-                      <tr key={row[0]} className="opacity-45">
+                      <tr key={row[0]} className="bg-slate-950/[0.08] opacity-55">
                         {row.map((cell, index) => (
-                          <td key={`${row[0]}-${cell}-${index}`} className="px-4 py-4">
-                            <span className={`block h-3 rounded-full bg-slate-700/70 ${index === 0 ? "w-24" : index === 2 ? "w-16" : "w-20"}`} />
+                          <td key={`${row[0]}-${cell}-${index}`} className="px-5 py-4">
+                            <span className={`block h-3 rounded-full bg-gradient-to-r from-slate-700/60 via-slate-600/55 to-slate-800/55 ${index === 0 ? "w-28" : index === 2 ? "w-20" : "w-24"}`} />
                           </td>
                         ))}
-                        <td className="px-4 py-4">
-                          <span className="block h-8 w-8 rounded-lg border border-slate-700 bg-slate-800/60" />
+                        <td className="px-5 py-4">
+                          <span className="block h-8 w-8 rounded-lg border border-slate-700/80 bg-slate-800/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)]" />
                         </td>
                       </tr>
                     ))}
@@ -372,13 +389,13 @@ export default function DashboardPage() {
                   </article>
                 ))}
               </div>
-              <div className="border-t border-slate-800 bg-slate-950/30 px-6 py-7 text-center">
+              <div className="border-t border-slate-800 bg-slate-950/36 px-6 py-7 text-center">
                 <h4 className="text-lg font-black text-white">Nenhuma transação encontrada ainda</h4>
                 <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-400">
                   Crie sua primeira cobrança Pix para acompanhar aprovação, pagador, status e valor.
                 </p>
                 <div className="mt-5">
-                  <Button>
+                  <Button className="shadow-[0_14px_30px_rgba(79,70,229,0.2)] hover:shadow-[0_18px_36px_rgba(6,182,212,0.16)]">
                     <QrCode aria-hidden="true" size={16} />
                     Criar cobrança Pix
                   </Button>
@@ -389,7 +406,7 @@ export default function DashboardPage() {
         </div>
 
         <aside className="grid content-start gap-4">
-          <section className="rounded-lg border border-slate-800 bg-slate-900/66 p-5 shadow-[0_16px_38px_rgba(2,6,23,0.14)]">
+          <section className="rounded-lg border border-emerald-300/15 bg-slate-900/66 p-5 shadow-[0_16px_38px_rgba(2,6,23,0.14),inset_0_1px_0_rgba(255,255,255,0.03)]">
             <div className="flex items-start gap-3">
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-emerald-400/20 bg-emerald-400/10 text-emerald-200">
                 <ShieldCheck aria-hidden="true" size={21} />
@@ -401,16 +418,16 @@ export default function DashboardPage() {
               </div>
             </div>
             <div className="mt-5 grid gap-3">
-              <div className="rounded-lg border border-slate-800 bg-slate-950/30 p-3">
+              <div className="rounded-lg border border-slate-800/90 bg-slate-950/38 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.025)]">
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-200/80">Limite atual</p>
                 <p className="mt-1 text-lg font-black text-white">{accountOverview.currentLimit}</p>
               </div>
-              <div className="rounded-lg border border-slate-800 bg-slate-950/30 p-3">
+              <div className="rounded-lg border border-slate-800/90 bg-slate-950/38 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.025)]">
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-200/80">Próximo nível</p>
                 <p className="mt-1 text-sm leading-6 text-slate-300">{accountOverview.nextLevel}</p>
               </div>
             </div>
-            <Button variant="ghost" className="mt-4 w-full justify-center border border-slate-800 bg-slate-950/30">
+            <Button variant="ghost" className="mt-4 w-full justify-center border border-emerald-300/18 bg-emerald-300/[0.06] text-emerald-100 hover:border-emerald-300/35 hover:bg-emerald-300/[0.09] hover:text-white">
               Verificar dados
             </Button>
           </section>

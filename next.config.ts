@@ -4,6 +4,9 @@ const apiBaseUrl = process.env.API_BASE_URL ?? "http://localhost:3333";
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["localhost"],
+  images: {
+    qualities: [75, 100],
+  },
   poweredByHeader: false,
   async rewrites() {
     return [

@@ -7,7 +7,7 @@ type HeaderProps = {
 
 export function Header({ onOpenSidebar }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-800/70 bg-slate-950/90 px-4 py-3 shadow-[0_10px_28px_rgba(2,6,23,0.18)] backdrop-blur-[6px] sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-30 border-b border-white/[0.08] bg-slate-950/[0.72] px-4 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.22)] backdrop-blur-[10px] backdrop-saturate-150 transition-[background-color,border-color,box-shadow] duration-300 supports-[backdrop-filter]:bg-slate-950/[0.72] sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-[1640px] items-center justify-between gap-4">
         <div className="flex min-w-0 items-center gap-3">
           <button

@@ -42,7 +42,7 @@ export const accountOverview = {
   status: "Conta ativa",
   statusDescription: "Sua conta está liberada para receber pagamentos Pix.",
   currentLimit: "R$ 50 mil/dia",
-  nextLevel: "Envie documentos adicionais para ampliar limites de saque.",
+  nextLevel: "Envie documentos adicionais para ampliar seus limites de saque.",
 };
 
 export const dashboardMetrics: DashboardMetric[] = [
